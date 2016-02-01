@@ -21,12 +21,15 @@ git init
 git remote add origin https://github.com/TheBigTeam/hamath
 git pull origin master
 ```
+You will get two projects: <hamath> and <mysite-example>
 
 ## Project Setup
 
 Install Requirements: ```pip install -r requirements.txt```
 
-Run the server: python manage.py runserver
+Navigate to ```yourdirectory/hammath-workspace/hamath/hamath```
+
+Run the server: ```python manage.py runserver```
 
 Open website in browser at http://localhost:8000 or admin at http://localhost:8000/admin (admin:admin)
 
