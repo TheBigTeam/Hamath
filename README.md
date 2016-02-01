@@ -2,27 +2,27 @@
 
 ####
 
-## Setup Project Locally
-
-* create hamath-workspace directory in a desired location
-```
-git init
-git remote add origin https://github.com/TheBigTeam/hamath
-git pull origin master
-```
-
 ## Virtual Enviroment Setup
 http://docs.python-guide.org/en/latest/dev/virtualenvs/
 
 Install virtualenv: ```pip install virtualenv```
 
-Make a new virtualenv: ```virtualenv hamath-workspace```
+Make a new virtualenv in desired location: ```virtualenv hamath-workspace```
 
 Activate the virtualenv: ```source /bin/activate```
 
 and
 
 Dectivate the virtualenv: ```deactivate```
+
+## Setup Local Repository
+
+pull down code from github with the following terminal commands:
+```
+git init
+git remote add origin https://github.com/TheBigTeam/hamath
+git pull origin master
+```
 
 ## Project Setup
 
