@@ -5,8 +5,11 @@
 ## Setup Project Locally
 
 * create hamath-workspace directory in a desired location
-* git init
-* git pull
+```
+git init
+git remote add origin https://github.com/TheBigTeam/hamath
+git pull origin master
+```
 
 ## Virtual Enviroment Setup
 http://docs.python-guide.org/en/latest/dev/virtualenvs/
