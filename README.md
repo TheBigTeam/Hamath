@@ -2,15 +2,24 @@
 
 ####
 
-## Initial Enviroment Setup
+## Setup Project Locally
 
-Make a new virtualenv: 'virtualenv hamath-workspace'
+* create hamath-workspace directory in a desired location
+* git init
+* git pull
 
-Activate the virtualenv: 'source /bin/activate'
+## Virtual Enviroment Setup
+http://docs.python-guide.org/en/latest/dev/virtualenvs/
 
-Install Requirements: 'pip install -r requirements.txt'
+Insall virtualenv: ```pip install virtualenv```
 
-Dectivate the virtualenv: deactivate
+Make a new virtualenv: ```virtualenv hamath-workspace```
+
+Activate the virtualenv: ```source /bin/activate```
+
+Install Requirements: ```pip install -r requirements.txt```
+
+Dectivate the virtualenv: ```deactivate```
 
 ## Project Setup
 
