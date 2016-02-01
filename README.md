@@ -11,13 +11,11 @@ Make a new virtualenv in desired location: ```virtualenv hamath-workspace```
 
 Activate the virtualenv: ```source /bin/activate```
 
-and
-
-Dectivate the virtualenv: ```deactivate```
+The virtualenv can be deactivated: ```deactivate```
 
 ## Setup Local Repository
 
-pull down code from github with the following terminal commands:
+Now, from inside our activated virtual enviroment 'hamath-workspace', pull down code from github with the following terminal commands:
 ```
 git init
 git remote add origin https://github.com/TheBigTeam/hamath
