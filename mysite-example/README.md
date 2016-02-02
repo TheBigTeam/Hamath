@@ -1,20 +1,16 @@
-django-poll-app
-===============
+# Django Example Project
 
-The solution to https://docs.djangoproject.com/en/dev/intro/tutorial01/
+Throughout this tutorial, we’ll walk you through the creation of a basic poll application.
 
-Getting Started
----------------
+It’ll consist of two parts:
 
-### Initial Setup ###
-1. Make a new virtualenv: ``virtualenv env``
-2. Activate the virtualenv: ``source env/bin/activate``
-3. Install Django: ``pip install Django``
-4. Edit ``mysite/settings.py:36`` to match your timezone
-5. Run the server: ``python manage.py runserver``
-6. Open website in browser at ``http://localhost:8000/polls`` or admin at ``http://localhost:8000/admin`` (admin:admin)
+* A public site that lets people view polls and vote in them.
+* An admin site that lets you add, change, and delete polls.
 
-### After initial setup ###
-1. Activate the virtualenv: ``source env/bin/activate``
-2. Run the server: ``python manage.py runserver``
-3. Open website in browser at ``http://localhost:8000/polls`` or admin at ``http://localhost:8000/admin`` (admin:admin)
+1. https://docs.djangoproject.com/en/1.9/intro/tutorial01/
+2. https://docs.djangoproject.com/en/1.9/intro/tutorial02/
+3. https://docs.djangoproject.com/en/1.9/intro/tutorial03/
+4. https://docs.djangoproject.com/en/1.9/intro/tutorial04/
+5. https://docs.djangoproject.com/en/1.9/intro/tutorial05/
+6. https://docs.djangoproject.com/en/1.9/intro/tutorial06/
+7. https://docs.djangoproject.com/en/1.9/intro/tutorial07/
