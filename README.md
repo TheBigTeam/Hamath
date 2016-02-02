@@ -27,7 +27,7 @@ You will get two projects: <hamath> and <mysite-example>
 
 Install Requirements: ```pip install -r requirements.txt```
 
-Navigate to: ```yourdirectory/hammath-workspace/hamath/hamath```
+Navigate to: ```/hammath-workspace/hamath/hamath```
 
 Run the server: ```python manage.py runserver```
 
