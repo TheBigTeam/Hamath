@@ -21,7 +21,9 @@ git init
 git remote add origin https://github.com/TheBigTeam/hamath
 git pull origin master
 ```
-You will get two projects: <hamath> and <mysite-example>
+You will get two projects: 
+* *hamath*: is the class project
+* *mysite-example*: is django sample website described here: https://docs.djangoproject.com/en/1.9/intro/tutorial01/
 
 ## Project Setup
 
