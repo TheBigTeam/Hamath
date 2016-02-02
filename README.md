@@ -18,7 +18,7 @@ The virtualenv can be deactivated: ```deactivate```
 Now, from inside our activated virtual enviroment (*hamath-workspace*), pull down code from github with the following terminal commands:
 ```
 git init
-git remote add origin https://github.com/TheBigTeam/hamath
+git remote add origin https://github.com/TheBigTeam/hamath-workspace
 git pull origin master
 ```
 You will get two projects: 
