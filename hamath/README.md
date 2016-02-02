@@ -1,6 +1,6 @@
 # Hamath Learning Software
 
-Authors:
+**Authors:**
 
 **H**enrique Oliveira
 
@@ -10,4 +10,4 @@ Authors:
 
 **A**rmora Rama
 
-Decription: Hamath is a math based game aimed to augment the inclass material in a fun and interactive way.
+**Decription:** Hamath is a math based game aimed to augment the inclass material in a fun and interactive way.
