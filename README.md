@@ -7,9 +7,8 @@
 ***
 
 ## Virtual Enviroment Setup
-http://docs.python-guide.org/en/latest/dev/virtualenvs/
 
-Install virtualenv: ```pip install virtualenv```
+**wiki link:** *https://github.com/TheBigTeam/hamath-workspace/wiki/Installing-Virturalenv*
 
 Make a new virtualenv in desired location: ```virtualenv hamath-workspace```
 
