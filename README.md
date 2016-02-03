@@ -1,8 +1,10 @@
 # Mac Setup
 
-####
+***
 
-**first things first, make sure you have pip and github installed and working**
+**first things first, make sure you have pip, python, and github installed and working properly**
+
+***
 
 ## Virtual Enviroment Setup
 http://docs.python-guide.org/en/latest/dev/virtualenvs/
