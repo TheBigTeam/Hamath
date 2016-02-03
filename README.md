@@ -1,5 +1,7 @@
 ***
 
+# Prerequisites
+
 **First things first, make sure you have [pip](https://github.com/TheBigTeam/hamath-workspace/wiki/pip-installation), [python](https://github.com/TheBigTeam/hamath-workspace/wiki/python-installation), and [github](https://github.com/TheBigTeam/hamath-workspace/wiki/github-setup) installed and working properly. If not, don't sweat it, check out the [**wiki's**](https://github.com/TheBigTeam/hamath-workspace/wiki) for installation instructions**
 
 
