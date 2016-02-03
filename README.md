@@ -21,7 +21,7 @@ The virtualenv can be deactivated: ```deactivate```
 
 ## Setup Local Repository
 
-Now, from inside our activated virtual enviroment (*yourprojectname-workspace*), pull down code from github with the following terminal commands:
+Now, from inside our activated virtual enviroment (*yourprojectname-workspace*), pull down code from github with the following command-line commands:
 ```
 git init
 git remote add origin https://github.com/TheBigTeam/hamath-workspace
