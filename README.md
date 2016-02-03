@@ -8,9 +8,9 @@
 
 **wiki link:** *https://github.com/TheBigTeam/hamath-workspace/wiki/Installing-Virturalenv*
 
-Make a new virtualenv in desired location: ```virtualenv hamath-workspace```
+Make a new virtualenv in desired location: ```virtualenv yourprojectname-workspace```
 
-The ```hamath-workspace``` directory isolates our libraries and contains the local github repository.
+The ```yourprojectname-workspace``` directory isolates our libraries and contains the local github repository.
 
 **How To Use:**
 
@@ -20,10 +20,10 @@ The virtualenv can be deactivated: ```deactivate```
 
 ## Setup Local Repository
 
-Now, from inside our activated virtual enviroment (*hamath-workspace*), pull down code from github with the following terminal commands:
+Now, from inside our activated virtual enviroment (*yourprojectname-workspace*), pull down code from github with the following terminal commands:
 ```
 git init
-git remote add origin https://github.com/TheBigTeam/hamath-workspace
+git remote add origin https://github.com/TheBigTeam/yourprojectname-workspace
 git pull origin master
 ```
 You will get two projects: 
@@ -34,7 +34,7 @@ You will get two projects:
 
 Install Requirements: ```pip install -r requirements.txt```
 
-Navigate to: ```/hammath-workspace/hamath/hamath```
+Navigate to: ```/yourprojectname-workspace/yourprojectname/yourprojectname```
 
 Run the server: ```python manage.py runserver```
 
