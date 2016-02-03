@@ -2,8 +2,7 @@
 
 ####
 
-install pip
-intall github
+**first things first, make sure you have pip and github installed and working**
 
 ## Virtual Enviroment Setup
 http://docs.python-guide.org/en/latest/dev/virtualenvs/
