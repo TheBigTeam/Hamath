@@ -29,7 +29,8 @@ git pull origin master
 You will get two projects: 
 * *hamath*: is the class project
 * *mysite-example*: is a django sample website described here: https://docs.djangoproject.com/en/1.9/intro/tutorial01/
-* or create your own django project with ```django-admin startproject mysite```
+
+or create your own django project with ```django-admin startproject mysite```
 
 ## Project Setup
 
