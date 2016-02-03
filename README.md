@@ -2,11 +2,13 @@
 
 **First things first, make sure you have pip, python, and github installed and working properly. If not, don't sweat it, check out the wiki for installation instructions**
 
+* *https://github.com/TheBigTeam/hamath-workspace/wiki/Installing-pip*
+* *https://github.com/TheBigTeam/hamath-workspace/wiki/Installing-Python*
+* *https://github.com/TheBigTeam/hamath-workspace/wiki/Installing-github-command-line-tool*
+
 ***
 
 ## Virtual Enviroment Setup
-
-**wiki link:** *https://github.com/TheBigTeam/hamath-workspace/wiki/Installing-Virturalenv*
 
 Make a new virtualenv in desired location: ```virtualenv yourprojectname-workspace```
 
@@ -19,8 +21,6 @@ Activate the virtualenv: ```source /bin/activate```
 The virtualenv can be deactivated: ```deactivate```
 
 ## Setup Local Repository
-
-**wiki link:** *https://github.com/TheBigTeam/hamath-workspace/wiki/Installing-github-command-line-tool*
 
 Now, from inside our activated virtual enviroment (*yourprojectname-workspace*), pull down code from github with the following terminal commands:
 ```
