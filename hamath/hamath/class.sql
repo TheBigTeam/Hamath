@@ -1,0 +1,13 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE teachers (id integer primary key, name text);
+INSERT INTO "teachers" VALUES(1,'Daniel Steenblik');
+CREATE TABLE students (id integer not null, name text not null, easy_score integer, medium_score integer, high_score integer);
+INSERT INTO "students" VALUES(1,'Alan Turing',20,19,20);
+INSERT INTO "students" VALUES(2,'Michio Kaku',19,18,19);
+INSERT INTO "students" VALUES(3,'Ken Thompson',14,17,18);
+INSERT INTO "students" VALUES(4,'Dennis Ritchie',16,19,17);
+INSERT INTO "students" VALUES(5,'Neil DeGrasse Tyson',18,19,18);
+INSERT INTO "students" VALUES(6,'Kurt Godel',20,20,18);
+INSERT INTO "students" VALUES(7,'Jon von Neumann',19,19,18);
+COMMIT;
