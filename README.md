@@ -11,9 +11,9 @@ Install virtualenv: ```pip install virtualenv```
 
 ####
 
-the modify your .bash_profile with ```cd ~/.bash_profile``` and add the following line to it:
+the modify your .bash_profile with ```cd ~/.bash_profile``` 
 
-```export PIP_REQUIRE_VIRTUALENV=true```
+and add the following line to it: ```export PIP_REQUIRE_VIRTUALENV=true```
 
 pip should now only run if there is a virtualenv currently activated
 
