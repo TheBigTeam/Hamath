@@ -9,16 +9,6 @@ http://docs.python-guide.org/en/latest/dev/virtualenvs/
 
 Install virtualenv: ```pip install virtualenv```
 
-####
-
-the modify your .bash_profile with ```cd ~/.bash_profile``` 
-
-and add the following line to it: ```export PIP_REQUIRE_VIRTUALENV=true```
-
-**pip should now only run if there is a virtualenv currently activated**
-
-####
-
 Make a new virtualenv in desired location: ```virtualenv hamath-workspace```
 
 Activate the virtualenv: ```source /bin/activate```
@@ -46,14 +36,6 @@ Navigate to: ```/hammath-workspace/hamath/hamath```
 Run the server: ```python manage.py runserver```
 
 Open website in browser at http://localhost:8000 or admin at http://localhost:8000/admin (admin:admin)
-
-
-
-# Windows Setup
-
-####
-
-You're on your own
 
 
 
