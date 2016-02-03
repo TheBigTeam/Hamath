@@ -7,7 +7,7 @@
 
 ***
 
-## Virtual Enviroment Setup
+## Virtual Environment Setup
 
 Make a new virtualenv in desired location: ```virtualenv yourprojectname-workspace```
 
