@@ -1,5 +1,3 @@
-# Mac Setup
-
 ***
 
 **First things first, make sure you have pip, python, and github installed and working properly. If not, don't sweat it, check out the wiki for installation instructions**
