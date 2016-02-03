@@ -1,11 +1,23 @@
-# Getting Started
+# Mac Setup
 
 ####
+
+install pip
+intall github
 
 ## Virtual Enviroment Setup
 http://docs.python-guide.org/en/latest/dev/virtualenvs/
 
 Install virtualenv: ```pip install virtualenv```
+
+modify your .bash_profile: 
+
+```cd ~/.bash_profile```
+
+and add this line
+
+```# pip should only run if there is a virtualenv currently activated```
+```export PIP_REQUIRE_VIRTUALENV=true```
 
 Make a new virtualenv in desired location: ```virtualenv hamath-workspace```
 
@@ -34,4 +46,12 @@ Navigate to: ```/hammath-workspace/hamath/hamath```
 Run the server: ```python manage.py runserver```
 
 Open website in browser at http://localhost:8000 or admin at http://localhost:8000/admin (admin:admin)
+
+
+
+# Windows Setup
+
+####
+
+
 
