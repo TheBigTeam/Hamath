@@ -53,5 +53,7 @@ Open website in browser at http://localhost:8000 or admin at http://localhost:80
 
 ####
 
+You're on your own
+
 
 
