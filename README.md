@@ -9,15 +9,15 @@ http://docs.python-guide.org/en/latest/dev/virtualenvs/
 
 Install virtualenv: ```pip install virtualenv```
 
-modify your .bash_profile: 
+####
 
-```cd ~/.bash_profile```
+the modify your .bash_profile with ```cd ~/.bash_profile``` and add the following line to it:
 
-and add this line
+''''export PIP_REQUIRE_VIRTUALENV=true```
 
-```# pip should only run if there is a virtualenv currently activated```
+pip should now only run if there is a virtualenv currently activated
 
-```export PIP_REQUIRE_VIRTUALENV=true```
+####
 
 Make a new virtualenv in desired location: ```virtualenv hamath-workspace```
 
