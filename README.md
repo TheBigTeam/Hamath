@@ -26,8 +26,8 @@ git remote add origin https://github.com/TheBigTeam/yourprojectname-workspace
 git pull origin master
 ```
 You will get two projects: 
-* *hamath*: is the class project
-* *mysite-example*: is a django sample website described [**here**](https://docs.djangoproject.com/en/1.9/intro/tutorial01/)
+* **hamath**: is the class project
+* **mysite-example**: is a django sample website described [**here**](https://docs.djangoproject.com/en/1.9/intro/tutorial01/)
 
 or create your own django project with ```django-admin startproject mysite```
 
