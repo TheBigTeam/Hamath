@@ -20,6 +20,8 @@ The virtualenv can be deactivated: ```deactivate```
 
 ## Setup Local Repository
 
+**wiki link:** *https://github.com/TheBigTeam/hamath-workspace/wiki/Installing-github-command-line-tool*
+
 Now, from inside our activated virtual enviroment (*yourprojectname-workspace*), pull down code from github with the following terminal commands:
 ```
 git init
