@@ -17,6 +17,7 @@ modify your .bash_profile:
 and add this line
 
 ```# pip should only run if there is a virtualenv currently activated```
+
 ```export PIP_REQUIRE_VIRTUALENV=true```
 
 Make a new virtualenv in desired location: ```virtualenv hamath-workspace```
