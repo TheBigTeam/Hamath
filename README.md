@@ -12,6 +12,10 @@
 
 Make a new virtualenv in desired location: ```virtualenv hamath-workspace```
 
+The ```hamath-workspace``` directory isolates our libraries and contains the local github repository.
+
+**How To Use:**
+
 Activate the virtualenv: ```source /bin/activate```
 
 The virtualenv can be deactivated: ```deactivate```
