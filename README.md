@@ -35,7 +35,8 @@ You will get two projects:
 
 or create your own django project with ```django-admin startproject mysite```
 
-**important note**
+**important note:**
+
 The hidden file titled ``.gitignore`` will hide you virtualenv folders when you run ``git status``. Without it, you would have to ignore these directies manually during every commit.
 
 ## Project Setup
