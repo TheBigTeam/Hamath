@@ -11,7 +11,7 @@
 
 Make a new virtualenv in desired location: ```virtualenv yourprojectname```
 
-The ```yourprojectname-workspace``` directory isolates our libraries and contains the local github repository.
+The ```projectname-workspace``` directory isolates our libraries and contains the local github repository.
 
 **How To Use:**
 
@@ -22,7 +22,7 @@ The virtualenv can be deactivated: ```deactivate```
 
 ## Setup Local Repository
 
-Now, from inside our activated virtual enviroment (*yourprojectname-workspace*), pull down code from github with the following command-line commands:
+Now, from inside our activated virtual enviroment (*projectname-workspace*), pull down code from github with the following command-line commands:
 ```
 git init
 git remote add origin https://github.com/TheBigTeam/hamath-workspace
@@ -43,7 +43,7 @@ The hidden file titled ``.gitignore`` will hide you virtualenv folders when you 
 
 Install Requirements: ```pip install -r requirements.txt```
 
-Navigate to: ```/yourprojectname-workspace/yourprojectname/yourprojectname```
+Navigate to the project root: ```/projectname-workspace/projectname-src/projectname```
 
 Run the server: ```python manage.py runserver```
 
