@@ -31,8 +31,12 @@ git pull origin master
 You will get two projects: 
 * **hamath**: is the class project
 * **mysite-example**: is a django sample website described [**here**](https://docs.djangoproject.com/en/1.9/intro/tutorial01/)
+* 
 
 or create your own django project with ```django-admin startproject mysite```
+
+**important note**
+The hidden file titled ``.gitignore`` will hide you virtualenv folders when you run ``git status``. Without it, you would have to ignore these directies manually during every commit.
 
 ## Project Setup
 
