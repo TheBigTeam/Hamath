@@ -46,9 +46,9 @@ Install Requirements: `pip install -r requirements.txt```
 
 2. Create new Admin: `python manage.py createsuperuser`
 
-username = `aidanmelen`
+  username = `aidanmelen`
 
-password = `password`
+  password = `password`
 
 3. Run the server: `python manage.py runserver`
 
