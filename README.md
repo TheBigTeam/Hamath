@@ -16,6 +16,7 @@ The ```yourprojectname-workspace``` directory isolates our libraries and contain
 **How To Use:**
 
 Activate the virtualenv: ```source /bin/activate```
+Windows: ``script\activate``
 
 The virtualenv can be deactivated: ```deactivate```
 
