@@ -46,7 +46,9 @@ Install Requirements: `pip install -r requirements.txt```
 
 2. Create new Admin: `python manage.py createsuperuser`
 
-  username = `aidanmelen`
+  username = `yourname`
+  
+  email = `yourname@westminstercollege.edu`
 
   password = `password`
 
