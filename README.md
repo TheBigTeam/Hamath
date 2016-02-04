@@ -23,11 +23,13 @@ The virtualenv can be deactivated: `deactivate`
 ## Setup Local Repository
 
 Now, from inside our activated virtual enviroment (*projectname-workspace*), pull down code from github with the following command-line commands:
-`
+
+```
 git init
 git remote add origin https://github.com/TheBigTeam/hamath-workspace
 git pull origin master
-`
+```
+
 You will get two projects: 
 * **hamath**: is the class project
 * **mysite-example**: is a django sample website described [**here**](https://docs.djangoproject.com/en/1.9/intro/tutorial01/)
