@@ -9,43 +9,49 @@
 
 ## Virtual Environment Setup
 
-Make a new virtualenv in desired location: ```virtualenv yourprojectname```
+Make a new virtualenv in desired location: `virtualenv yourprojectname`
 
-The ```projectname-workspace``` directory isolates our libraries and contains the local github repository.
+The `projectname-workspace` directory isolates our libraries and contains the local github repository.
 
 **How To Use:**
 
-Activate the virtualenv: ```source /bin/activate```
-Windows: ``script\activate``
+Activate the virtualenv: `source /bin/activate`
+Windows: `script\activate`
 
-The virtualenv can be deactivated: ```deactivate```
+The virtualenv can be deactivated: `deactivate`
 
 ## Setup Local Repository
 
 Now, from inside our activated virtual enviroment (*projectname-workspace*), pull down code from github with the following command-line commands:
-```
+`
 git init
 git remote add origin https://github.com/TheBigTeam/hamath-workspace
 git pull origin master
-```
+`
 You will get two projects: 
 * **hamath**: is the class project
 * **mysite-example**: is a django sample website described [**here**](https://docs.djangoproject.com/en/1.9/intro/tutorial01/)
-* 
 
-or create your own django project with ```django-admin startproject mysite```
+* or create your own django project with `django-admin startproject mysite`
 
 **important note:**
 
-The hidden file titled ``.gitignore`` will hide you virtualenv folders when you run ``git status``. Without it, you would have to ignore these directies manually during every commit.
+The hidden file titled `.gitignore` will hide you virtualenv folders when you run `git status`. Without it, you would have to ignore these directies manually during every commit.
 
 ## Project Setup
 
-Install Requirements: ```pip install -r requirements.txt```
+Install Requirements: `pip install -r requirements.txt```
 
-Navigate to the project root: ```/projectname-workspace/projectname-src/projectname```
+1. Navigate to the project root: `/projectname-workspace/projectname-src/projectname`
 
-Run the server: ```python manage.py runserver```
+2. Create new Admin: `python manage.py createsuperuser`
+
+username = `aidanmelen`
+
+password = `password`
+
+
+3. Run the server: `python manage.py runserver`
 
 Open website in browser at http://localhost:8000 or admin at http://localhost:8000/admin (admin:admin)
 
