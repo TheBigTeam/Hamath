@@ -42,7 +42,7 @@ The hidden file titled `.gitignore` will hide you virtualenv folders when you ru
 
 Install Requirements: `pip install -r requirements.txt```
 
-1. Navigate to the project root: `/projectname-workspace/projectname-src/projectname`
+1. Navigate to the project root: `/projectname-workspace/projectname-src`
 
 2. Create new Admin: `python manage.py createsuperuser`
 
