@@ -52,7 +52,7 @@ Install Requirements: `pip install -r requirements.txt```
 
 3. Run the server: `python manage.py runserver`
 
-Open website in browser at http://localhost:8000 or admin at http://localhost:8000/admin (admin:admin)
+  Open website in browser at http://localhost:8000 or admin at http://localhost:8000/admin (admin:admin)
 
 
 
