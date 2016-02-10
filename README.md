@@ -1,6 +1,20 @@
+# Hamath Learning Software
+
+**Authors:**
+
+**H**enrique Oliveira
+
+**A**idan Melen
+
+**M**errit Ruthrauff
+
+**A**rmora Rama
+
+**Decription:** Hamath is a math based game aimed to augment the in-class learning in a fun and interactive way.
+
 ***
 
-# Prerequisites
+# Prerequisites For Setup and Installations
 
 **First things first, make sure you have [pip](https://github.com/TheBigTeam/hamath-workspace/wiki/pip-installation), [python](https://github.com/TheBigTeam/hamath-workspace/wiki/python-installation), and [github](https://github.com/TheBigTeam/hamath-workspace/wiki/github-setup) installed and working properly. If not, don't sweat it, check out the [**wiki's**](https://github.com/TheBigTeam/hamath-workspace/wiki) for installation instructions**
 
