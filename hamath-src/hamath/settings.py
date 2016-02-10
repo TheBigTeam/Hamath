@@ -55,7 +55,9 @@ ROOT_URLCONF = 'hamath.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            '/Users/aidanmelen/Developer/hammath-workspace/hamath-src/',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
