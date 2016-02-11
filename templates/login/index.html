@@ -1,20 +1,30 @@
-<!DOCTYPE html>
+{% extends 'layout/layout.html' %}
 
-<html>
-	<title> {{ login_page }}</title>
-	<body>
-		<h1>{{ key }}</h1>
-		<section class="loginform cf">
-			<form name="login" action="index_submit" method="get" accept-charset="utf-8">
-			    <ul>
-			        <li><label for="usermail">Email</label>
-			        <input type="email" name="usermail" placeholder="yourname@email.com" required></li>
-			        <li><label for="password">Password</label>
-			        <input type="password" name="password" placeholder="password" required></li>
-			        <li>
-			        <input type="submit" value="Login"></li>
-			    </ul>
-			</form>
-		</section>
-	</body>
-</html>
+{% block title %} Login Page {% endblock %}
+
+{% block content %} 
+
+<section class="loginform">
+
+	<form name="login" action="index_submit" method="get" accept-charset="utf-8">
+	    <ul>
+	        <li><label for="usermail">Email</label>
+		    <input type="email" name="usermail" placeholder="yourname@email.com" required></li>
+
+		    <li><label for="password">Password</label>
+		    <input type="password" name="password" placeholder="password" required></li>
+	    </ul>
+	</form>
+
+	<button onclick="loginAction()">Login</button>
+	<p id="validate"></p>
+
+	<script>
+		function loginAction() {
+    	document.getElementById("validate").innerHTML = "you pressed the <Login>button";
+		}
+	</script>
+
+</section>
+
+{% endblock %}
