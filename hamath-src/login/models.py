@@ -10,5 +10,5 @@ class Login(models.Model):
 	def __unicode__(self):
 		return '/%s/' % self.name
 
-	#def get_absolute_url(self):
-		#return '/video/%s/' % self.id 
+	def get_absolute_url(self):
+		return '/login/%s/' % self.id 

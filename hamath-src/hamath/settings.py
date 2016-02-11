@@ -57,7 +57,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            '/Users/aidanmelen/Developer/hammath-workspace/hamath-src/',
+            '/Users/aidanmelen/Developer/hamath-workspace/templates/',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
