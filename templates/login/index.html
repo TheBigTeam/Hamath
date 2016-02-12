@@ -6,7 +6,14 @@
 
 <section class="loginform">
 
-	<h1> {{ key }} </h1>
+	{% for user in users %}
+
+	<h1> {{ user.get_full_name  }} </h1>
+
+	{% endfor %}
+
+	<h1> {{ user.get_full_name  }} </h1> 
+
 
 	<form name="login" action="index_submit" method="get" accept-charset="utf-8">
 	    <ul>
