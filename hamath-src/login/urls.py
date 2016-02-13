@@ -18,5 +18,5 @@ from django.contrib import admin
 from login import views
 
 urlpatterns = [
-    url(r'^$', 'login.views.index', name='index'),
+    url(r'^$', views.index, name='index'),
 ]
