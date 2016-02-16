@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %} Student {% endblock %}
+
+{% block content %} 
+
+<h1>Student</h1>
+
+{% if user.is_authenticated %}
+    <a href="/logout/">Logout</a>
+{% else %}
+    <a href="/login/?next={{ request.path }}">Login</a>
+{% endif %}
+<a href="/home/">Home</a>
+
+{% endblock %}

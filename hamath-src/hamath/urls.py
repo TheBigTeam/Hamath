@@ -17,8 +17,14 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from hamath import views
 
+from views import HomeView
+
 urlpatterns = [
-	url(r'^$', views.index, name='index'),
+    url(r'^$', HomeView.as_view(), name='Home'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^login/', include('login.urls')),
+    url(r'^signup/$', views.SignUp, name='SignUp'),
+    url(r'^login/$', views.Login, name='Login'),
+    url(r'^logout/$', views.Logout, name='Logout'),
+    #url(r'^home/$', views.Home, name='Home'),
+    url(r'^student/$', views.Student, name='Student'),
 ]
