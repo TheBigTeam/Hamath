@@ -8,7 +8,7 @@ from hamath.forms import RegistrationForm, LoginForm
 from hamath.models import Student
 from hamath import settings
 
-from django.views.generic.base import TemplateView
+#from django.views.generic.base import TemplateView
 
 def SignUp(request):
     next = request.GET.get('next', settings.LOGIN_URL)
@@ -67,9 +67,8 @@ def Logout(request):
 def Student(request):
     return render(request, 'student/index.html', {})
 
-class HomeView(TemplateView):
-    template_name = 'home/index.html'
+#class HomeView(TemplateView):
+    #template_name = 'home/index.html'
 
-
-#def Home(request):
-    #return render(request, 'home/index.html', {})
+def Home(request):
+    return render(request, 'home/index.html', {})

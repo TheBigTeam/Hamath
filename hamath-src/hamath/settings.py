@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 LOGIN_URL = '/login/'
 SIGNUP_URL = '/signup/'
-HOME_URL = '/home/'
+HOME_URL = ''
 STUDENT_URL = '/student/'
 
 
