@@ -12,15 +12,14 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#TEMPLATE_PATH = os.path.join(BASE_DIR,'templates')
+# Build paths to manage.py realtive to this settings __file__
+BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+
 
 LOGIN_URL = '/login/'
 SIGNUP_URL = '/signup/'
-HOME_URL = ''
+HOME_URL = '/'
 STUDENT_URL = '/student/'
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -60,11 +59,12 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'hamath.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            '/Users/aidanmelen/Developer/hamath-workspace/hamath-src/templates/',
+            os.path.join(BASE_DIR, 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -114,3 +114,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#file related to the project but need to be served elsewhere, such as AWS
+
+STATIC_ROOT =  os.path.join(os.path.dirname(BASE_DIR), 'static_in_env', 'static_root')
+
+#should exist in project
+
+STATICFILES = (
+    os.path.join(BASE_DIR, 'static_in_hamath', 'our_static'),
+)
+
+#This is where users upload files to
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_in_env', 'media_root')

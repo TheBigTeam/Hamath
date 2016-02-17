@@ -27,10 +27,10 @@ def SignUp(request):
             user.save()
             return HttpResponseRedirect(next)
         else:
-            return TemplateResponse(request, 'signup/index.html', {'form': form})
+            return TemplateResponse(request, 'signup.html', {'form': form})
     else:
         form = RegistrationForm()
-        return TemplateResponse(request, 'signup/index.html', {'form': form})
+        return TemplateResponse(request, 'signup.html', {'form': form})
 
 
 def Login(request):
@@ -49,26 +49,26 @@ def Login(request):
                 login(request, user)
                 return HttpResponseRedirect(next)
             else:
-                return TemplateResponse(request, 'login/index.html', {'form': form})
+                return TemplateResponse(request, 'login.html', {'form': form})
         else:
-            return TemplateResponse(request, 'login/index.html', {'form': form})
+            return TemplateResponse(request, 'login.html', {'form': form})
 
     else:
         form = LoginForm()
-        return TemplateResponse(request, 'login/index.html', {'form': form})
+        return TemplateResponse(request, 'login.html', {'form': form})
 
 
 def Logout(request):
     logout(request)
-    return HttpResponseRedirect(settings.LOGIN_URL)
+    return HttpResponseRedirect(settings.HOME_URL)
 
 
 @login_required
 def Student(request):
-    return render(request, 'student/index.html', {})
+    return render(request, 'student.html', {})
 
 #class HomeView(TemplateView):
     #template_name = 'home/index.html'
 
 def Home(request):
-    return render(request, 'home/index.html', {})
+    return render(request, 'home.html', {})
