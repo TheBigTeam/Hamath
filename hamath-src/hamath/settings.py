@@ -15,6 +15,7 @@ import os
 # Build paths to manage.py realtive to this settings __file__
 BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
+USE_POSTGRES = True
 
 LOGIN_URL = '/login/'
 SIGNUP_URL = '/signup/'
@@ -83,17 +84,24 @@ WSGI_APPLICATION = 'hamath.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'hamath',
-        'USER': 'hamath_safeuser',
-        'PASSWORD': 'password',
-        'HOST': '',
-        'PORT': '',
+if USE_POSTGRES:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'hamath',
+            'USER': 'hamath_safeuser',
+            'PASSWORD': 'password',
+            'HOST': '',
+            'PORT': '',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'mydatabase',
+        }
+    }
 
 
 # Internationalization
