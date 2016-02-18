@@ -6,11 +6,11 @@
 
 <h1>Welcome Back {{ request.user.first_name }}  {{ request.user.last_name }}</h1>
 
-<a href="/home/">Home</a>
+<!-- <a href="/home/">Home</a>
 {% if user.is_authenticated %}
-    <a href="/logout/">Logout</a>
+<a href="/logout/">Logout</a>
 {% else %}
-    <a href="/login/?next={{ request.path }}">Login</a>
-{% endif %}
+<a href="/login/?next={{ request.path }}">Login</a>
+{% endif %} -->
 
 {% endblock %}

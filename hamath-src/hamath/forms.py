@@ -4,12 +4,12 @@ from django.forms import ModelForm
 from hamath.models import Student
 
 class RegistrationForm(forms.ModelForm):
-    username = forms.CharField(label=(u'User Name'))
-    email = forms.EmailField(label=(u'Email Address'))
-    first_name = forms.CharField(label=(u'First Name'))
-    last_name = forms.CharField(label=(u'Last Name'))
-    password = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False))
-    password1 = forms.CharField(label=(u'Verify Password'), widget=forms.PasswordInput(render_value=False))
+    username = forms.CharField(label=(u'User Name'), widget=forms.TextInput(attrs={'placeholder': 'username'}))
+    email = forms.EmailField(label=(u'Email Address'), widget=forms.TextInput(attrs={'placeholder': 'email address'}))
+    first_name = forms.CharField(label=(u'First Name'), widget=forms.TextInput(attrs={'placeholder': 'first name'}))
+    last_name = forms.CharField(label=(u'Last Name'), widget=forms.TextInput(attrs={'placeholder': 'last name'}))
+    password = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(attrs={'placeholder': 'password'}))
+    password1 = forms.CharField(label=(u'Verify Password'), widget=forms.PasswordInput(attrs={'placeholder': 'verify password'}))
 
     class Meta:
         model = Student
@@ -30,6 +30,5 @@ class RegistrationForm(forms.ModelForm):
         return cleaned_data
         
 class LoginForm(forms.Form):
-    username = forms.CharField(label=(u'User Name'))
-    password = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(render_value=False))
-        
+    username = forms.CharField(label=(u'User Name'), widget=forms.TextInput(attrs={'placeholder': 'username'}))
+    password = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))

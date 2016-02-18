@@ -1,0 +1,20 @@
+html, body {
+    background-color: #eee;
+}
+
+.register-container {
+    margin-top: 50;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    background: white;
+    padding: 20px;
+}
+
+.register-form {
+    margin-left: 110;
+}
+
+.submit {
+    margin-top: 20;
+}
