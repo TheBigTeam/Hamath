@@ -30,7 +30,7 @@ The `projectname-workspace` directory isolates our libraries and contains the lo
 **How To Use:**
 
 Activate the virtualenv: `source /bin/activate`
-Windows: `script\activate`
+Windows: `Script/activate`
 
 The virtualenv can be deactivated: `deactivate`
 
