@@ -62,9 +62,9 @@ Install Requirements: `pip install -r requirements.txt`
 
 2. Setup Database with the makemigration and migrate commands:
 
-`python manage.py makemigrations`
+  `python manage.py makemigrations`
 
-`python manage.py migrate`
+  `python manage.py migrate`
 
 3. Create new Admin: `python manage.py createsuperuser`
 
