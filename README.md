@@ -60,7 +60,12 @@ Install Requirements: `pip install -r requirements.txt```
 
 1. Navigate to the project root: `/projectname-workspace/projectname-src`
 
-2. Create new Admin: `python manage.py createsuperuser`
+2. Setup Database:
+
+`python manage.py makemigrations`
+`python manage.py migrate`
+
+3. Create new Admin: `python manage.py createsuperuser`
 
   username = `yourname`
   
@@ -68,7 +73,7 @@ Install Requirements: `pip install -r requirements.txt```
 
   password = `password`
 
-3. Run the server: `python manage.py runserver`
+4. Run the server: `python manage.py runserver`
 
   Open website in browser at http://localhost:8000 or admin at http://localhost:8000/admin (admin:admin)
 
