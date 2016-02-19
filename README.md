@@ -52,7 +52,7 @@ You will get two projects:
 
 **important note:**
 
-The hidden file titled `.gitignore` will hide you virtualenv folders when you run `git status`. Without it, you would have to ignore these directies manually during every commit.
+The hidden file titled `.gitignore` will hide you virtualenv folders when you run `git status`. Without it, you would have to ignore these directories manually during every commit.
 
 ## Project Setup
 
