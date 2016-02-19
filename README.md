@@ -60,9 +60,10 @@ Install Requirements: `pip install -r requirements.txt`
 
 1. Navigate to the project root: `/projectname-workspace/projectname-src`
 
-2. Setup Database:
+2. Setup Database with the makemigration and migrate commands:
 
 `python manage.py makemigrations`
+
 `python manage.py migrate`
 
 3. Create new Admin: `python manage.py createsuperuser`
