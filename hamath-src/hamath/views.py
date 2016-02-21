@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group #use group to authenticate teachers during signup
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -9,6 +9,7 @@ from hamath.models import Student
 from hamath import settings
 
 from django.views.generic.base import View, TemplateView
+
 
 def SignUp(request):
     next = request.GET.get('next', settings.LOGIN_URL)
@@ -35,7 +36,10 @@ def SignUp(request):
 
 def Login(request):
     if request.user.is_authenticated():
+        if user.groups.filter(name='Student').count() == 0:
             return HttpResponseRedirect(settings.STUDENT_URL)
+        else:
+            return HttpResponseRedirect(settings.TEACHER_URL)
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -59,16 +63,18 @@ def Login(request):
         return TemplateResponse(request, 'hamath/login.html', {'form': form})
 
 
-class LogoutView(View):
-    def get(self, request):
-        logout(request)
-        return HttpResponseRedirect(settings.HOME_URL)
+def Logout(request):
+    logout(request)
+    return HttpResponseRedirect(settings.HOME_URL)
+
 
 class HomeView(TemplateView):
     template_name = 'hamath/home.html'
 
+
 def About(request):
     return render(request, 'hamath/about.html', {})
+
 
 def Contact(request):
     return render(request, 'hamath/contact.html', {})

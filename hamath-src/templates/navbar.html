@@ -19,7 +19,7 @@
     <!--/Right Nav-->
     <ul class="nav navbar-nav navbar-right">
       {% if user.is_authenticated %}
-        <li class="active"><a href="% url 'hamath.LogoutView.as_view()' %}"> Logout <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="{% url 'hamath.views.Logout' %}"> Logout <span class="sr-only">(current)</span></a></li>
       {% else %}
        <li class="active"><a <a href="/login/?next={{ request.path }}">Login</a> <span class="sr-only">(current)</span></a></li>
       {% endif %}

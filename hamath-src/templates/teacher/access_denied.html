@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block head_title %} Contact {% endblock %}
+{% block head_title %} {{ request.user.first_name }} (Teacher) {% endblock %}
 
 {% block content %} 
 
@@ -18,8 +18,8 @@
         padding: 20px;
     }
     .title {
-    	margin-top: 10px;
-    	margin-left: 270px;
+        margin-top: 10px;
+        margin-left: 80px;
         margin-bottom: 20px;
     }
     .buttons {
@@ -35,7 +35,7 @@
 
 <div class="menu-container">
 	<div class="title">
-		<h3> Contact Information </h3>
+		<h3> Sorry, but you need to be a teacher to access this page </h3>
 	</div>
 </div>
 

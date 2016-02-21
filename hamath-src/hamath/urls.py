@@ -19,15 +19,16 @@ from django.conf import settings
 from django.contrib import admin
 from hamath import views
 
-from views import HomeView, LogoutView
+from views import HomeView
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', HomeView.as_view(), name='Home'),
     url(r'^student/', include('student.urls')),
+    url(r'^teacher/', include('teacher.urls')),
     url(r'^signup/$', views.SignUp, name='SignUp'),
     url(r'^login/$', views.Login, name='Login'),
-    url(r'^logout/$', LogoutView.as_view(), name='Logout'),
+    url(r'^logout/$', views.Logout, name='Logout'),
     url(r'^about/$', views.About, name='About'),
     url(r'^contact/$', views.Contact, name='Contact'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -17,10 +17,12 @@ BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 USE_POSTGRES = True
 
-LOGIN_URL = '/login/'
+HOME_URL = '/'
 SIGNUP_URL = '/signup/'
-HOME_URL = ''
+LOGIN_URL = '/login/'
+LOGOUT_URL = '/logout/'
 STUDENT_URL = '/student/'
+TEACHER_URL = '/teacher/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
