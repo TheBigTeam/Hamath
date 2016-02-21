@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.forms import ModelForm
 from hamath.models import Student
+from django.contrib.auth import authenticate
 
 class RegistrationForm(forms.ModelForm):
     username = forms.CharField(label=(u'User Name'), widget=forms.TextInput(attrs={'placeholder': 'username'}))
@@ -24,11 +25,21 @@ class RegistrationForm(forms.ModelForm):
         raise forms.ValidationError("That username is already taken, please select another.")
 
     def clean(self):
-        cleaned_data = super(RegistrationForm, self).clean()
-        if cleaned_data['password'] != cleaned_data['password1']:
-            raise forms.ValidationError("The passwords did not match. Please try again.")
-        return cleaned_data
+        password = self.cleaned_data.get('password')
+        password1 = self.cleaned_data.get('password1')
+
+        if password and password != password1:
+            raise forms.ValidationError("Passwords don't match")
+        return self.cleaned_data
         
 class LoginForm(forms.Form):
     username = forms.CharField(label=(u'User Name'), widget=forms.TextInput(attrs={'placeholder': 'username'}))
     password = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+
+    def clean(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
+        user = authenticate(username=username, password=password)
+        if not user or not user.is_active:
+            raise forms.ValidationError("Sorry, that login was invalid. Please try again.")
+        return self.cleaned_data

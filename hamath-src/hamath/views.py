@@ -27,14 +27,13 @@ def SignUp(request):
             user.save()
             return HttpResponseRedirect(next)
         else:
-            return TemplateResponse(request, 'signup.html', {'form': form})
+            return TemplateResponse(request, 'hamath/signup.html', {'form': form})
     else:
         form = RegistrationForm()
-        return TemplateResponse(request, 'signup.html', {'form': form})
+        return TemplateResponse(request, 'hamath/signup.html', {'form': form})
 
 
 def Login(request):
-    next = request.GET.get('next', settings.STUDENT_URL)
     if request.user.is_authenticated():
             return HttpResponseRedirect(settings.STUDENT_URL)
     if request.method == 'POST':
@@ -43,19 +42,21 @@ def Login(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user = authenticate(username=username, password=password)
+        else:
+            return TemplateResponse(request, 'hamath/login.html', {'form': form})
 
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(next)
+                return HttpResponseRedirect(settings.STUDENT_URL)
             else:
-                return TemplateResponse(request, 'login.html', {'form': form})
+                return TemplateResponse(request, 'hamath/login.html', {'form': form})
         else:
-            return TemplateResponse(request, 'login.html', {'form': form})
+            return TemplateResponse(request, 'hamath/login.html', {'form': form})
 
     else:
         form = LoginForm()
-        return TemplateResponse(request, 'login.html', {'form': form})
+        return TemplateResponse(request, 'hamath/login.html', {'form': form})
 
 
 class LogoutView(View):
@@ -63,19 +64,11 @@ class LogoutView(View):
         logout(request)
         return HttpResponseRedirect(settings.HOME_URL)
 
-"""
-broken
-"""
-"""
-class StudentView(View):
-    @login_required
-    def get(self, request):
-        return render(request, 'student.html', {})
-"""     
-
-@login_required
-def Student(request):
-    return render(request, 'student.html', {})
-
 class HomeView(TemplateView):
-    template_name = 'home.html'
+    template_name = 'hamath/home.html'
+
+def About(request):
+    return render(request, 'hamath/about.html', {})
+
+def Contact(request):
+    return render(request, 'hamath/contact.html', {})

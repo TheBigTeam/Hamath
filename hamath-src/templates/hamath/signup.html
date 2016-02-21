@@ -8,6 +8,13 @@
     html, body {
         background-color: #eee;
     }
+    input {
+        display: block;
+        width: 180px;
+    }
+    .title {
+    	padding: 20px;
+    }
     .register-container {
         margin-top: 50;
         margin-left: auto;
@@ -17,53 +24,55 @@
         padding: 20px;
     }
     .register-form {
-        margin-left: 110;
+        margin-left: 90;
     }
     .submit {
         margin-top: 20;
     }
     .btn{
-        width: 152px;
+        width: 180px;
     }
 </style>
 
 <div class="register-container">
     <div class="register-form">
-    	<p><h3>User Signup</h3></p>
+    	<div class="title">
+    		<p><h3>User Signup</h3></p>
+    	</div>
 		<form action="" method="post">
 			{% csrf_token %}
 			{% if form.errors %}<p>Please correct the following fields:</p>{% endif %}
 			<div class="register_div">
 			    {% if form.username.errors %}<p class="error">{{ form.username.errors }}</p>{% endif %}
 			    <div class="register_div">
-			    <p><label for="username"{% if form.username.errors %} class="error"{% endif %}></label></p>
 			    <p>{{ form.username }}</p>
+			    <p><label for="username"{% if form.username.errors %} class="error"{% endif %}></label></p>
 			    </div>
 			</div>
 			<div class="register_div">
 			    {% if form.first_name.errors %}<p class="error">{{ form.first_name.errors }}</p>{% endif %}
-			    <p><label for="first_name"{% if form.first_name.errors %} class="error"{% endif %}></label></p>
 			    <p>{{ form.first_name }}</p>
+			    <p><label for="first_name"{% if form.first_name.errors %} class="error"{% endif %}></label></p>
 			</div>
 			<div class="register_div">
 			    {% if form.last_name.errors %}<p class="error">{{ form.last_name.errors }}</p>{% endif %}
-			    <p><label for="last_name"{% if form.last_name.errors %} class="error"{% endif %}></label></p>
 			    <p>{{ form.last_name }}</p>
+			    <p><label for="last_name"{% if form.last_name.errors %} class="error"{% endif %}></label></p>
 			</div>
 			<div class="register_div">
 			    {% if form.email.errors %}<p class="error">{{ form.email.errors }}</p>{% endif %}
-			    <p><label for="email"{% if form.email.errors %} class="error"{% endif %}></label></p>
 			    <p>{{ form.email }}</p>
+			    <p><label for="email"{% if form.email.errors %} class="error"{% endif %}></label></p>
 			</div>
 			<div class="register_div">
 			    {% if form.password.errors %}<p class="error">{{ form.password.errors }}</p>{% endif %}
-			    <p><label for="password"{% if form.password.errors %} class="error"{% endif %}></label></p>
 			    <p>{{ form.password }}</p>
+			    <p><label for="password"{% if form.password.errors %} class="error"{% endif %}></label></p>
 			</div>
 			<div class="register_div">
 			    {% if form.password1.errors %}<p class="error">{{ form.password1.errors }}</p>{% endif %}
-			    <p><label for="password1"{% if form.password1.errors %} class="error"{% endif %}></label></p>
 			    <p>{{ form.password1 }}</p>
+			    <p><label for="password1"{% if form.password1.errors %} class="error"{% endif %}></label></p>
 			</div>
 			<div class="submit">
 				<p><input class="btn btn-primary" type="submit" value="Submit"alt="register"></p>

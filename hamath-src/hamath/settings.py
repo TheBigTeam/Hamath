@@ -19,7 +19,7 @@ USE_POSTGRES = True
 
 LOGIN_URL = '/login/'
 SIGNUP_URL = '/signup/'
-HOME_URL = '/'
+HOME_URL = ''
 STUDENT_URL = '/student/'
 
 # Quick-start development settings - unsuitable for production
@@ -31,7 +31,7 @@ SECRET_KEY = 'q#13b_h-eeg7l=+txxhd0wa15t^x8nt)+6lb(zf4#_hkz^26jc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -45,6 +45,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'hamath', 
+    'student',
+    'teacher',
+    'game',
 )
 
 MIDDLEWARE_CLASSES = (

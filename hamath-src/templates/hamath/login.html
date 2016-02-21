@@ -8,6 +8,13 @@
     html, body {
         background-color: #eee;
     }
+    input {
+        display: block;
+        width: 180px;
+    }
+    .title {
+        padding: 20px;
+    }
     .register-container {
         margin-top: 50;
         margin-left: auto;
@@ -17,36 +24,39 @@
         padding: 20px;
     }
     .register-form {
-        margin-left: 110;
+        margin-left: 90;
     }
     .submit {
         margin-top: 20;
     }
     .btn{
-        width: 152px;
+        width: 180px;
     }
 </style>
 
 <div class="register-container">
     <div class="register-form">
-        <p><h3>User Login</h3></p>
+        <div class="title">
+            <p><h3>User Login</h3></p>
+        </div>
         <form action="" method="post">
             {% csrf_token %}
             {% if form.errors %}<p>Please correct the following fields:</p>{% endif %}
             <div class="register_div">
                 {% if form.username.errors %}<p class="error">{{ form.username.errors }}</p>{% endif %}
-                <p><label for="username"{% if form.username.errors %} class="error"{% endif %}></label></p>
                 <p>{{ form.username }}</p>
+                <p><label for="username"{% if form.username.errors %} class="error"{% endif %}></label></p>
             </div>
             <div class="register_div">
                 {% if form.password.errors %}<p class="error">{{ form.password.errors }}</p>{% endif %}
-                <p><label for="password"{% if form.password.errors %} class="error"{% endif %}></label></p>
                 <p>{{ form.password }}</p>
+                <p><label for="password"{% if form.password.errors %} class="error"{% endif %}></label></p>
             </div>
             <div class="submit">
                 <p><input class="btn btn-primary" type="submit" value="Login"alt="register"></p>
-            <div class="submit">
-            <a href="/signup/">Create a new account</a>
+            <div class="button">
+                <p><a href="/signup/"><input class="btn btn-success" value="Create a new account"alt="register"></p>
+<!--             <a href="/signup/">Create a new account</a> -->
         </form>
     </div>
 </div>

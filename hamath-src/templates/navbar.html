@@ -4,22 +4,22 @@
     <ul class="nav navbar-nav">
 
       <!--/Left Nav-->
-      <li class="active"><a href="/">Home</a></li>
       {% if user.is_authenticated %}
-        <li><a href="#Game">Game</a></li>
-        <li><a href="#GetScores">Get Scores</a></li>
-        <li><a href="#HowToPlay">How To Play</a></li>
+         <li class="active"><a href="{% url 'student.views.Student' %}">{{ request.user.first_name }}'s Home</a></li>
+        <li><a href="{% url 'game.views.PlayHamath' %}">Play Hamath</a></li>
+        <li><a href="{% url 'student.views.GetScores' %}">Get Scores</a></li>
+        <li><a href="{% url 'student.views.HowToPlay' %}">How To Play</a></li>
       {% else %}
-        <li><a href="#HowToPlay">How To Play</a></li>
-        <li><a href="#About">About</a></li>
+         <li class="active"><a href="/">Home</a></li>
+        <li><a href="{% url 'hamath.views.About' %}">About</a></li>
+        <li><a href="{% url 'hamath.views.Contact' %}">Contact</a></li>
       {% endif %}
     </ul>
 
     <!--/Right Nav-->
     <ul class="nav navbar-nav navbar-right">
       {% if user.is_authenticated %}
-        <li class="active"><a href="/student/"> {{ request.user.first_name }} <span class="sr-only">(current)</span></a></li>
-        <li class="active"><a href="/logout/"> Logout <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="% url 'hamath.LogoutView.as_view()' %}"> Logout <span class="sr-only">(current)</span></a></li>
       {% else %}
        <li class="active"><a <a href="/login/?next={{ request.path }}">Login</a> <span class="sr-only">(current)</span></a></li>
       {% endif %}
