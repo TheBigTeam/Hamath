@@ -15,7 +15,7 @@ import os
 # Build paths to manage.py realtive to this settings __file__
 BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
-USE_POSTGRES = True
+USE_POSTGRES = False
 
 HOME_URL = '/'
 SIGNUP_URL = '/signup/'
