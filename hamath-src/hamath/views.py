@@ -10,7 +10,6 @@ from hamath import settings
 
 from django.views.generic.base import View, TemplateView
 
-
 def SignUp(request):
     next = request.GET.get('next', settings.LOGIN_URL)
     if request.user.is_authenticated():
@@ -34,12 +33,21 @@ def SignUp(request):
         return TemplateResponse(request, 'hamath/signup.html', {'form': form})
 
 
+def is_teacher(user):
+    return user.groups.filter(name='Teacher').exists()
+
+
+def student_teacher_redirect(request):
+    if is_teacher(request.user):
+        return render(request, 'teacher/teacher.html', {})
+    else:
+        return render(request, 'student/student.html', {})
+
+
 def Login(request):
     if request.user.is_authenticated():
-        if user.groups.filter(name='Student').count() == 0:
-            return HttpResponseRedirect(settings.STUDENT_URL)
-        else:
-            return HttpResponseRedirect(settings.TEACHER_URL)
+        student_teacher_redirect(request)
+
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -52,7 +60,8 @@ def Login(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(settings.STUDENT_URL)
+                #return HttpResponseRedirect(settings.STUDENT_URL)
+                return student_teacher_redirect(request)
             else:
                 return TemplateResponse(request, 'hamath/login.html', {'form': form})
         else:

@@ -5,7 +5,13 @@
 
       <!--/Left Nav-->
       {% if user.is_authenticated %}
-         <li class="active"><a href="{% url 'student.views.Student' %}">{{ request.user.first_name }}'s Home</a></li>
+
+        {% if 'Teacher' in request.user.groups.all %}
+          <li class="active"><a href="{% url 'teacher.views.Teacher' %}">{{ request.user.first_name }}'s Home (teacher)</a></li>
+        {% else %}
+          <li class="active"><a href="{% url 'student.views.Student' %}">{{ request.user.first_name }}'s Home</a></li>
+        {% endif %}
+        
         <li><a href="{% url 'game.views.PlayHamath' %}">Play Hamath</a></li>
         <li><a href="{% url 'student.views.GetScores' %}">Get Scores</a></li>
         <li><a href="{% url 'student.views.HowToPlay' %}">How To Play</a></li>

@@ -9,7 +9,6 @@ def is_teacher(user):
 
 @login_required
 def Teacher(request):
-	next = request.GET.get('next', settings.TEACHER_URL)
 	if is_teacher(request.user):
 		return render(request, 'teacher/teacher.html', {})
 	else:
