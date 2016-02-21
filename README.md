@@ -30,7 +30,7 @@ The `projectname-workspace` directory isolates our libraries and contains the lo
 **How To Use:**
 
 Activate the virtualenv: `source /bin/activate`
-Windows: `script\activate`
+Windows: `Script/activate`
 
 The virtualenv can be deactivated: `deactivate`
 
@@ -52,23 +52,29 @@ You will get two projects:
 
 **important note:**
 
-The hidden file titled `.gitignore` will hide you virtualenv folders when you run `git status`. Without it, you would have to ignore these directies manually during every commit.
+The hidden file titled `.gitignore` will hide you virtualenv folders when you run `git status`. Without it, you would have to ignore these directories manually during every commit.
 
 ## Project Setup
 
-Install Requirements: `pip install -r requirements.txt```
+Install Requirements: `pip install -r requirements.txt`
 
 1. Navigate to the project root: `/projectname-workspace/projectname-src`
 
-2. Create new Admin: `python manage.py createsuperuser`
+2. Setup Database with the makemigration and migrate commands:
 
-  username = `yourname`
+  `python manage.py makemigrations`
+
+  `python manage.py migrate`
+
+3. Create new Admin: `python manage.py createsuperuser`
+
+  username = `admin`
   
   email = `yourname@westminstercollege.edu`
 
   password = `password`
 
-3. Run the server: `python manage.py runserver`
+4. Run the server: `python manage.py runserver`
 
   Open website in browser at http://localhost:8000 or admin at http://localhost:8000/admin (admin:admin)
 
