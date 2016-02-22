@@ -7,18 +7,19 @@
 {% block content %} 
 
 <link href="{% static 'css/teacher/basic.css' %}" rel="stylesheet">
+<link href="{% static 'css/table.css' %}" rel="stylesheet">
 
 <div class="menu-container">
 	<div class="title">
-		<h3> Here are you students top scores </h3>
+		<h3> Here are your students' top scores </h3>
 	</div>
     <div class="table">
-        <table border="1" style="background-color:#FFFFFF;border-collapse:collapse;border:1px solid #000000s;color:#000000;width:100%" cellpadding="3" cellspacing="3">
+        <table border="1" style="background-color:#FFFFFF;border-collapse:collapse;border:none;color:#000000;width:100%" cellpadding="3" cellspacing="3" border: none;>
             <tr>
-                <td></td>
-                <td>Rookie Mode</td>
-                <td>Intemediate Mode</td>
-                <td>Master Mode</td>
+                <th>Student Name</th>
+                <th>Rookie Mode</th>
+                <th>Intemediate Mode</th>
+                <th>Master Mode</th>
             </tr>
             {% for student in students %}
                 <tr>

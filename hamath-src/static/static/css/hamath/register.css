@@ -17,12 +17,17 @@ input {
     padding: 20px;
 }
 .register-form {
-    margin-left: 90;
+    text-align: center;
+}
+.register_div {
+    margin-left: 90px;
 }
 .submit {
-    margin-bottom: 10;
+    margin-left: 90px;
+    margin-bottom: 10px;
 }
 .to-signup {
+    margin-left: 90px;
 	margin-top: 20;
 }
 .btn{
