@@ -7,13 +7,13 @@ def PlayHamath(request):
 
 @login_required
 def RookieMode(request):
-	return render(request, 'student/game/rookie_mode.html', {})
+	return render(request, 'game/rookie_mode.html', {})
 
 @login_required
 def IntermediateMode(request):
-	return render(request, 'student/game/intermediate_mode.html', {})
+	return render(request, 'game/intermediate_mode.html', {})
 
 @login_required
 def MasterMode(request):
-	return render(request, 'student/game/master_mode.html', {})
+	return render(request, 'game/master_mode.html', {})
 

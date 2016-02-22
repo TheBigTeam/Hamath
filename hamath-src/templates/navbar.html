@@ -1,5 +1,5 @@
 <!-- Static navbar -->
-<nav class="navbar navbar-inverse navbar-static-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <ul class="nav navbar-nav">
 
@@ -27,7 +27,7 @@
       {% if user.is_authenticated %}
         <li class="active"><a href="{% url 'hamath.views.Logout' %}"> Logout <span class="sr-only">(current)</span></a></li>
       {% else %}
-       <li class="active"><a <a href="/login/?next={{ request.path }}">Login</a> <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="/login/?next={{ request.path }}"> Login <span class="sr-only">(current)</span></a></li>
       {% endif %}
       </ul>
 

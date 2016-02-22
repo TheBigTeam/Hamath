@@ -130,15 +130,16 @@ STATIC_URL = '/static/'
 
 #file related to the project but need to be served elsewhere, such as AWS
 
-STATIC_ROOT =  os.path.join(os.path.dirname(BASE_DIR), 'static_in_env', 'static_root')
+STATIC_ROOT =  os.path.join(os.path.dirname(BASE_DIR), 'static', 'static')
 
 #should exist in project
 
-STATICFILES = (
-    os.path.join(BASE_DIR, 'static_in_hamath', 'our_static'),
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static', 'static'),
 )
 
 #This is where users upload files to
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static_in_env', 'media_root')
+
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static', 'media')

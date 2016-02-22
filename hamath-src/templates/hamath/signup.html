@@ -1,38 +1,12 @@
 {% extends 'base.html' %}
 
+{% load staticfiles %}
+
 {% block head_title %} Signup {% endblock %}
 
 {% block content %} 
 
-<style>
-    html, body {
-        background-color: #eee;
-    }
-    input {
-        display: block;
-        width: 180px;
-    }
-    .title {
-    	padding: 20px;
-    }
-    .register-container {
-        margin-top: 50;
-        margin-left: auto;
-        margin-right: auto;
-        width: 400px;
-        background: white;
-        padding: 20px;
-    }
-    .register-form {
-        margin-left: 90;
-    }
-    .submit {
-        margin-top: 20;
-    }
-    .btn{
-        width: 180px;
-    }
-</style>
+<link href="{% static 'css/hamath/register.css' %}" rel="stylesheet">
 
 <div class="register-container">
     <div class="register-form">
@@ -76,7 +50,7 @@
 			</div>
 			<div class="submit">
 				<p><input class="btn btn-primary" type="submit" value="Submit"alt="register"></p>
-			<div class="submit">
+			</div>
 		</form>
 	</div>
 </div>

@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
+{% load staticfiles %}
+
 {% block head_title %} {{ request.user.first_name }} (Teacher) {% endblock %}
 
 {% block content %} 
+
+<link href="{% static 'css/teacher/basic.css' %}" rel="stylesheet">
 
 <style>
     html, body {
