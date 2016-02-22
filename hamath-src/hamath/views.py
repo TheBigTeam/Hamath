@@ -7,6 +7,7 @@ from django.template.response import TemplateResponse
 from hamath.forms import RegistrationForm, LoginForm
 from hamath.models import Student
 from hamath import settings
+import teacher
 
 from django.views.generic.base import View, TemplateView
 
@@ -33,13 +34,10 @@ def SignUp(request):
         return TemplateResponse(request, 'hamath/signup.html', {'form': form})
 
 
-def is_teacher(user):
-    return user.groups.filter(name='Teacher').exists()
-
-
 def student_teacher_redirect(request):
-    if is_teacher(request.user):
-        return render(request, 'teacher/teacher.html', {})
+    if teacher.views.is_teacher(request.user):
+        context = teacher.views.get_student_score(request)
+        return render(request, 'teacher/teacher.html', context)
     else:
         return render(request, 'student/student.html', {})
 

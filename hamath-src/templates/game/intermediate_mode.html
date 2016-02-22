@@ -1,7 +1,35 @@
 {% extends 'base.html' %}
 
+{% load staticfiles %}
+
 {% block head_title %} Intermediate Mode {% endblock %}
 
 {% block content %} 
+
+<link href="{% static 'css/game/core.css' %}" rel="stylesheet"> <!-- Found at https://github.com/dwmkerr/html5base-->
+<link href="{% static 'css/game/typeography.css' %}" rel="stylesheet"> <!-- Styling needed for a fullscreen canvas and no scrollbars.  -->
+<link href="{% static 'css/game/basic.css' %}" rel="stylesheet"> <!-- Here's where we'll put the Game styles -->
+
+
+<!-- this is where the Space Invaders HTML will go... */ -->
+
+<!-- Here's the background div -->
+<div id="BG"></div>
+<!-- Here's the game container div-->
+<div id="gamecontainer">
+	<canvas id="gameCanvas"></canvas>
+</div> 
+
+<form>
+	<font color="white">Enemy Problem:<br></font>
+	<input type="text" name="problemtxt" id="problemtxt"><br>
+	
+	<font color="white">Player's Resolution:<br></font>
+	<input type="text" name="responsetxt" id="responsetxt"><br>
+</form>
+
+<script type="text/javascript" src="{% static 'js/game/BG.js' %}"></script> <!-- Activating the background script -->
+<script type="text/javascript" src="{% static 'js/game/game.js' %}"></script> <!-- Activating the game engine script -->
+<script type="text/javascript" src="{% static 'js/game/layout.js' %}"></script> <!-- js for canvas layout -->
 
 {% endblock %}

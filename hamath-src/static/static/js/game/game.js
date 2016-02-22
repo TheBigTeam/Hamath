@@ -212,13 +212,13 @@ WelcomeState.prototype.draw = function(game, dt, ctx)  //receives the game state
     //  Clear the background.
     ctx.clearRect(0, 0, game.width, game.height);
  
- 	// Writes out "Hammath the Game"
+ 	// Writes out "Hamath the Game"
  	// I have no ideia how to style/CSS, like, for reals
     ctx.font="30px Arial";
     ctx.fillStyle = '#ffffff';
     ctx.textBaseline="center";
     ctx.textAlign="center";
-    ctx.fillText("Hammath the Game", game.width / 2, game.height/2 - 40);
+    ctx.fillText("The Hamath Game", game.width / 2, game.height/2 - 40);
     ctx.font="16px Arial";
  
     ctx.fillText("Press 'Enter' to start.", game.width / 2, game.height/2); 
@@ -809,7 +809,7 @@ PauseState.prototype.draw = function(game, dt, ctx)
 /* THIS SHOULD BE IN ANOTHER FILE WHEN I LEARN HOW TO (same excuse as always) */
 /* -------------------------------------------------------------------------------------------------------------------- */
 
-/* Random math generator for the Hammath Game*/
+/* Random math generator for the Hamath Game*/
 /* It should return an array of 4 things: first number, the second number and the type of equation type (symbol) and the result*/
 
 function problemGenerator(difficulty)
