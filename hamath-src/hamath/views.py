@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
 from hamath.forms import RegistrationForm, LoginForm
 from hamath.models import Student
+# from student.models import Student
 from hamath import settings
 import teacher
 

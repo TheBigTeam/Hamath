@@ -1,5 +1,10 @@
 html, body {
-        background-color: #eee;
+        background: #5856D6;
+        /*background: #5856D6; /* For browsers that do not support gradients */    
+        /*background: -webkit-linear-gradient(bottom , #5856D6, #2B2B2B); */
+        /*background: -o-linear-gradient(bottom, #5856D6, #2B2B2B); */
+        /*background: -moz-linear-gradient(bottom, #5856D6, #2B2B2B); */
+        /*background: linear-gradient(bottom, #5856D6, #2B2B2B);*/
     }
     .menu-container {
         margin-top: 50;
