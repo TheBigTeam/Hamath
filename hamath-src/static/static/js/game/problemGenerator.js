@@ -1,181 +1,82 @@
-/* Random math generator for the Hammath Game*/
-/* It should return an array of 4 things: first number, the second number and the type of equation type (symbol) and the result*/
+/*
+ * Constructor function
+ */
+function ProblemGenerator(difficulty) {
+	var self = this;
 
-function problemGenerator(difficulty)
-{
-	var firstNumber;
-	var secondNumber;
-	var symbol;
-	var symbolChoice;
-	var solution;
-	var returnArray;
+	self.operators = ['+','-','*','/'];
+	self.difficulty = difficulty;
 
-	if (difficulty === 1)
-	{
-		firstNumber = Math.floor((Math.random() * 10) + 1);
-		secondNumber = Math.floor((Math.random() * 10) + 1);
+	/*
+	 * Get a random digit 1-10
+	 */
+	self.getDigit = function() {
+		return (Math.floor((Math.random() * 10) + 1));
+	};
 
-		returnArray = sum(firstNumber,secondNumber);
-		solution = returnArray[0];
-		symbol = returnArray[1];
-	}
+	/*
+	 * get random operation +, -, *, /
+	 */
+	self.getOperator = function(numberOfOperations) {
+		return self.operators[Math.floor((Math.random() * numberOfOperations) + 1)];
+	};
 
-	if (difficulty === 2)
-	{
-		firstNumber = Math.floor((Math.random() * 100) + 1);
-		secondNumber = Math.floor((Math.random() * 100) + 1);
-		symbolChoice = Math.floor((Math.random() * 2) + 1);
+	/*
+	 * get the solution from the problem parameters
+	 */
+	self.evaluateSolution = function(a, b, operator) {
+		var solution = null;
 
-		if (symbolChoice == 1)
-		{
-			returnArray = sum(firstNumber,secondNumber);
-			solution = returnArray[0];
-			symbol = returnArray[1];
+		if (operator === '+') {
+			solution = a + b;
 		}
-		if (symbolChoice == 2)
-		{	
-				while (secondNumber > firstNumber)
-				{
-					secondNumber = Math.floor((Math.random() * 100) + 1);	
-				}
-			returnArray = sub(firstNumber,secondNumber);
-			solution = returnArray[0];
-			symbol = returnArray[1];
+		if (operator === '-') {
+			solution = a - b;
 		}
-		else 
-		{
-			window.confirm("Yeah, you screwed up the normal one");
+		if (operator === '*') {
+			solution = a * b;
 		}
-	}
-
-	if (difficulty === 3)
-	{
-		firstNumber = Math.floor((Math.random() * 10) + 1);
-		secondNumber = Math.floor((Math.random() * 10) + 1);
-
-		symbolChoice = Math.floor((Math.random() * 4) + 1);
-
-		if (symbolChoice == 1)
-		{
-			returnArray = sum(firstNumber,secondNumber);
-			solution = returnArray[0];
-			symbol = returnArray[1];
+		if (operator === '/') {
+			solution = a / b;
 		}
-		if (symbolChoice == 2)
-		{	
-				while (secondNumber > firstNumber)
-				{
-					secondNumber = Math.floor((Math.random() * 100) + 1);	
-				}
-			returnArray = sub(firstNumber,secondNumber);
-			solution = returnArray[0];
-			symbol = returnArray[1];
+		return solution;
+	};
+
+	/*
+	 * Validate the User's attempt
+	 */
+	self.isAttemptCorrect = function(attempt, solution) {
+		if (attempt === solution) {
+			return true;
+		} else {
+			return false;
 		}
-		if (symbolChoice == 3)
-		{
-			returnArray = mul(firstNumber,secondNumber);
-			solution = returnArray[0];
-			symbol = returnArray[1];
-		}
-		if (symbolChoice == 4)
-		{
-			while (secondNumber > firstNumber && (secondNumber % firstNumber === 0))
-			{
-					secondNumber = Math.floor((Math.random() * 100) + 1);	
-			}
-			returnArray = div(firstNumber,secondNumber);
-			solution = returnArray[0];
-			symbol = returnArray[1];
-		
-		}
-		
-		else 
-		{
-			window.confirm("Yeah, you screwed up the hard one");
-		}
-	}
+	};
 
-	if (difficulty === 4)
-	{
-		firstNumber = Math.floor((Math.random() * 100) + 1);
-		secondNumber = Math.floor((Math.random() * 100) + 1);
+	/*
+	 * get problem array firstDigit, Operator, secondDigit, solution
+	 */
+	self.setRandomProblem = function(difficulty) {
+		var a = null;
+		var b = null;
+		var operator = null;
+		var solution = null;
 
-		symbolChoice = Math.floor((Math.random() * 4) + 1);
+		a = self.getDigit();
+		b = self.getDigit();
 
-		if (symbolChoice == 1)
-		{
-			returnArray = sum(firstNumber,secondNumber);
-			solution = returnArray[0];
-			symbol = returnArray[1];
-		}
-		if (symbolChoice == 2)
-		{	
-				while (secondNumber > firstNumber)
-				{
-					secondNumber = Math.floor((Math.random() * 100) + 1);	
-				}
-			returnArray = sub(firstNumber,secondNumber);
-			solution = returnArray[0];
-			symbol = returnArray[1];
-		}
-		if (symbolChoice == 3)
-		{
-			returnArray = mul(firstNumber,secondNumber);
-			solution = returnArray[0];
-			symbol = returnArray[1];
-		}
-		if (symbolChoice == 4)
-		{
-			while (secondNumber > firstNumber && (secondNumber % firstNumber === 0))
-			{
-					secondNumber = Math.floor((Math.random() * 100) + 1);	
-			}
-			returnArray = div(firstNumber,secondNumber);
-			solution = returnArray[0];
-			symbol = returnArray[1];
-		
-		}
-		else 
-		{
-			window.confirm("Yeah, you screwed up the hardest one");
-		}
-		
-	}
+		if (difficulty == 1) operator = 1;
+		if (difficulty == 2) operator = self.getOperator(2);
+		if (difficulty == 3) operator = self.getOperator(4);
 
-	/*returnArray[0] = firstNumber;
-	returnArray[0] =  secondNumber;
-	returnArray[0] = symbol;
-	returnArray[0] = result;
+		solution = self.evaluateSolution(a, b, operator);
 
-	return returnArray;*/ //if the one down there doest work
+		return [a, operator, b, solution];
+	};
 
-	return [firstNumber, secondNumber, symbol, result];
-}
+	return self;
+};
 
-function sum (fn, sn)
-{
-	var symbol ="+";
-	var res = fn + sn;
-	return [res, symbol];
-}
+var pg = new ProblemGenerator();
 
-function sub (fn, sn)
-{
-	var symbol = "-";
-	var res = fn - sn;	
-	return [res, symbol];
-}
-
-function mul (fn, sn)
-{
-	var symbol ="*";
-	var res = fn * sn;
-	return [res, symbol];
-}
-
-function div (fn, sn)
-{
-	var symbol ="/";
-	var res = (fn/sn);
-	return [res, symbol];
-}
+alert(pg.setRandomProblem(2));
