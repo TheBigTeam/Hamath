@@ -1,5 +1,6 @@
-html, body {
-    background-color: #eee;
+html,
+body {
+    background: radial-gradient(circle,#3498db,white);
 }
 .menu-container {
     margin-top: 50;
@@ -7,7 +8,7 @@ html, body {
     margin-right: auto;
     width: 800px;
     height: 500px;
-    background: white;
+    background: radial-gradient(circle,#3498db,white);
     padding: 20px;
 }
 .title {

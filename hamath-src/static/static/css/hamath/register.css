@@ -1,5 +1,5 @@
 html, body {
-    background-color: #eee;
+    background: radial-gradient(circle,#3498db,white);
 }
 input {
     display: block;

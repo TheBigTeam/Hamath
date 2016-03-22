@@ -1,27 +1,26 @@
-html, body {
-        background: #5856D6;
-        /*background: #5856D6; /* For browsers that do not support gradients */    
-        /*background: -webkit-linear-gradient(bottom , #5856D6, #2B2B2B); */
-        /*background: -o-linear-gradient(bottom, #5856D6, #2B2B2B); */
-        /*background: -moz-linear-gradient(bottom, #5856D6, #2B2B2B); */
-        /*background: linear-gradient(bottom, #5856D6, #2B2B2B);*/
-    }
+html,
+body
+  {
+  background: radial-gradient(circle,#3498db,white);
+  }
     .menu-container {
         margin-top: 50;
         margin-left: auto;
         margin-right: auto;
         width: 800px;
         height: 500px;
-        background: white;
+        background: white
         padding: 20px;
     }
     .title {
         text-align: center;
         margin-bottom: 20px;
+
     }
     .buttons {
         margin-top: 50px;
         margin-left: 270px;
+
     }
     .btn {
         width: 200px;

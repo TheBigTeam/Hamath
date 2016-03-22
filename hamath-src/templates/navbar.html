@@ -14,7 +14,7 @@
         {% else %}
           <li class="active"><a href="{% url 'student.views.Student' %}">{{ request.user.first_name }}'s Home</a></li>
         {% endif %}
-        
+
         <li><a href="{% url 'game.views.PlayHamath' %}">Play Hamath</a></li>
         <li><a href="{% url 'student.views.GetScores' %}">Get Scores</a></li>
         <li><a href="{% url 'student.views.HowToPlay' %}">How To Play</a></li>
@@ -35,4 +35,5 @@
       </ul>
 
   </div> <!--/end container-->
+  
 </nav>
