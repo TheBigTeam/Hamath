@@ -17,6 +17,8 @@ BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 USE_POSTGRES = False
 
+VERSION = '2.0.0'
+
 HOME_URL = '/'
 SIGNUP_URL = '/signup/'
 LOGIN_URL = '/login/'
@@ -46,7 +48,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'hamath', 
+    'hamath',
     'student',
     'teacher',
     'game',
@@ -128,17 +130,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-#file related to the project but need to be served elsewhere, such as AWS
+# file related to the project but need to be served elsewhere, such as AWS
 
-STATIC_ROOT =  os.path.join(os.path.dirname(os.path.dirname(BASE_DIR)), 'static', 'static')
+STATIC_ROOT = os.path.join(os.path.dirname(
+    os.path.dirname(BASE_DIR)), 'static', 'static')
 
-#should exist in project
+# should exist in project
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static', 'static'),
 )
 
-#This is where users upload files to
+# This is where users upload files to
 
 MEDIA_URL = '/media/'
 

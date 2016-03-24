@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.contrib.auth.models import User, Group #use group to authenticate teachers during signup
+# use group to authenticate teachers during signup
+from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
@@ -12,6 +13,7 @@ import teacher
 
 from django.views.generic.base import View, TemplateView
 
+
 def SignUp(request):
     next = request.GET.get('next', settings.LOGIN_URL)
     if request.user.is_authenticated():
@@ -21,9 +23,9 @@ def SignUp(request):
         if form.is_valid():
             user = User.objects.create_user(
                 username=form.cleaned_data['username'],
-                first_name=form.cleaned_data['first_name'].title(), 
+                first_name=form.cleaned_data['first_name'].title(),
                 last_name=form.cleaned_data['last_name'].title(),
-                email=form.cleaned_data['email'], 
+                email=form.cleaned_data['email'],
                 password=form.cleaned_data['password']
             )
             user.save()
@@ -59,7 +61,7 @@ def Login(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                #return HttpResponseRedirect(settings.STUDENT_URL)
+                # return HttpResponseRedirect(settings.STUDENT_URL)
                 return student_teacher_redirect(request)
             else:
                 return TemplateResponse(request, 'hamath/login.html', {'form': form})
@@ -81,7 +83,7 @@ class HomeView(TemplateView):
 
 
 def About(request):
-    return render(request, 'hamath/about.html', {})
+    return render(request, 'hamath/about.html', {'version': settings.VERSION})
 
 
 def Contact(request):
@@ -90,12 +92,15 @@ def Contact(request):
 
 def my_custom_bad_request_view(request):
     return render(request, '400.html', {})
- 
+
+
 def my_custom_permission_denied_view(request):
     return render(request, '403.html', {})
- 
+
+
 def my_custom_page_not_found_view(request):
     return render(request, '404.html', {})
- 
+
+
 def my_custom_error_view(request):
     return render(request, '500.html', {})
