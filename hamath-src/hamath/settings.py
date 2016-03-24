@@ -11,13 +11,21 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 import os
+import json
 
 # Build paths to manage.py realtive to this settings __file__
 BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 USE_POSTGRES = False
 
-VERSION = '2.0.0'
+# print os.path.join(os.path.abspath(os.path.dirname(BASE_DIR)),
+# 'version.json')
+VERISON = None
+with open(os.path.join(os.path.abspath(os.path.dirname(BASE_DIR)), 'version.json')) as version_file:
+    data = json.load(version_file)
+    VERSION = data['version'] + ' - ' + data['date']
+
+print VERSION
 
 HOME_URL = '/'
 SIGNUP_URL = '/signup/'
