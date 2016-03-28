@@ -15,14 +15,14 @@ function ProblemGenerator(difficulty) {
 	};
 
 	/*
-	 * get random operation +, -, *, /
+	 * Get random operation +, -, *, /
 	 */
 	self.getOperator = function(numberOfOperations) {
 		return self.operators[Math.floor((Math.random() * numberOfOperations) + 1)];
 	};
 
 	/*
-	 * get the solution from the problem parameters
+	 * Get the solution from the problem parameters
 	 */
 	self.evaluateSolution = function(a, b, operator) {
 		var solution = null;
@@ -54,7 +54,7 @@ function ProblemGenerator(difficulty) {
 	};
 
 	/*
-	 * get problem array firstDigit, Operator, secondDigit, solution
+	 * Get problem array: firstDigit, Operator, secondDigit, solution
 	 */
 	self.setRandomProblem = function(difficulty) {
 		var a = null;

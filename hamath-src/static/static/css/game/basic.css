@@ -26,3 +26,8 @@ body, html {
 	margin-left: auto;
 	margin-right: auto;
 } 
+
+.planet-earth {
+	margin-top: -100px;
+	text-align: center;
+}

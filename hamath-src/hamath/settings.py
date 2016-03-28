@@ -25,8 +25,6 @@ with open(os.path.join(os.path.abspath(os.path.dirname(BASE_DIR)), 'version.json
     data = json.load(version_file)
     VERSION = data['version'] + ' - ' + data['date']
 
-print VERSION
-
 HOME_URL = '/'
 SIGNUP_URL = '/signup/'
 LOGIN_URL = '/login/'
