@@ -31,3 +31,13 @@ body, html {
 	margin-top: -100px;
 	text-align: center;
 }
+
+.problem {
+	margin-top: -600px;
+	text-align: left;
+}
+
+.solution {
+	margin-top: -40px;
+	text-align: right;
+}
