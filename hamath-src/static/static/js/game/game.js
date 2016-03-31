@@ -1,105 +1,10 @@
-/*
- * Constructor function
- */
-function ProblemGenerator(difficulty) {
-    var self = this;
-
-    self.operators = ['+','-','*','/'];
-    self.difficulty = difficulty;
-
-    /*
-     * Get a random digit 1-10
-     */
-    self.getDigit = function() {
-        return (Math.floor((Math.random() * 10) + 1));
-    };
-
-    /*
-     * Get random operation +, -, *, /
-     */
-    self.getOperator = function(numberOfOperations) {
-        return self.operators[Math.floor((Math.random() * numberOfOperations) + 1)];
-    };
-
-    /*
-     * Get the solution from the problem parameters
-     */
-    self.evaluateSolution = function(a, b, operator) {
-        var solution = null;
-
-        if (operator === '+') {
-            solution = a + b;
-        }
-        if (operator === '-') {
-            solution = a - b;
-        }
-        if (operator === '*') {
-            solution = a * b;
-        }
-        if (operator === '/') {
-            solution = a / b;
-        }
-        return solution;
-    };
-
-    /*
-     * Validate the User's attempt
-     */
-    self.isAttemptCorrect = function(attempt, solution) {
-        if (attempt === solution) {
-            return true;
-        } else {
-            return false;
-        }
-    };
-
-    /*
-     * Get problem array: firstDigit, Operator, secondDigit, solution
-     */
-    self.setRandomProblem = function(difficulty) {
-        var a = null;
-        var b = null;
-        var operator = null;
-        var solution = null;
-
-        a = self.getDigit();
-        b = self.getDigit();
-
-        if (difficulty == 1) operator = 1;
-        if (difficulty == 2) operator = self.getOperator(2);
-        if (difficulty == 3) operator = self.getOperator(4);
-
-        solution = self.evaluateSolution(a, b, operator);
-
-        return [a, operator, b, solution];
-    };
-
-    return self;
-};
-
-// var pg = new ProblemGenerator();
-
-// alert(pg.setRandomProblem(2));
+//CHANGE IT LATER
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Main game engine file, will control game state, keys, enemies and player
+// Main game engine file, will control game state, keys, enemy and player
 // Ideia for later: Many loops do the same thing, could just use them at the same time
 // Actually use unit testing
 
@@ -118,29 +23,27 @@ function Game()
  
  	// Set the initial config.
 	this.config = //controls the game settings 
-	{
+	{ //do not, and I really mean it, DO NOT FORGET A ENTER OR A COMMA HERE
 		bombRate: 0.05,
         bombMinVelocity: 50,
         bombMaxVelocity: 50,
         invaderInitialVelocity: 25,
         invaderAcceleration: 0,
         invaderDropDistance: 20,
-        rocketVelocity: 120,
-        rocketMaxFireRate: 2,
         gameWidth: 400,
         gameHeight: 300,
         fps: 50,
         debugMode: false,
-        invaderRanks: 5,
-        invaderFiles: 10,
+        invaderRanks: 1, //rows
+        invaderFiles: 1, //collumns
         shipSpeed: 120,
         levelDifficultyMultiplier: 0.2,
         pointsPerInvader: 5
 
 	};
 	 
-	var problemField = document.getElementById("problemField");
-	var solutionInput = document.getElementById("solutionInput");
+	//var problembox = document.getElementById("problemtxt"); // Won't be needed later, draw the problem instead of using this. Can be outside this file, just use response here and an affirmation response to change it?
+	var resultbox = document.getElementById("responsetxt"); 
 
 	// All state is in the variables below.
 	this.lives = 5; //Amount of times player can be hit
@@ -152,13 +55,15 @@ function Game()
     this.level = 1;
     this.difficulty = 1;
 
-    // Problem variables
-    this.firstNumber = 1;
-    this.secondNumber = 1;
+    this.firstNumber = Math.floor((Math.random() * 20) + 1);
+    this.secondNumber = Math.floor((Math.random() * 20) + 1);
     this.symbol = "+";
-    this.solution = 2;
+    this.result = 0;
 
-    problemField.value = "1 + 1"; //firstNumber + " " + symbol + " " + secondNumber;
+    // Problem variables (test only as it stands)
+    
+
+    //problembox.value = "1 + 1"; //firstNumber + " " + symbol + " " + secondNumber;
 
 	//  The state stack.
 	this.stateStack = []; // Gamestates will go into this stack
@@ -290,7 +195,7 @@ Game.prototype.start = function()
  
     //  Set the game variables for a game start. No it's not redundant with the first time you set it on config
     this.lives = 5;
-    this.config.debugMode = /debug=true/.test(window.location.href); // Avoiding getting fucky
+    //this.config.debugMode = /debug=true/.test(window.location.href); // Avoiding getting fucky
  
     //  Start the game loop.
     var game = this; //Gives the game this function to start the loop
@@ -398,6 +303,7 @@ GameOverState.prototype.keyDown = function(game, keyCode)
         game.lives = 1;
         game.score = 0;
         game.level = 1;
+        game.config.invaderRanks = 1;
         game.moveToState(new LevelIntroState(1));
     }
 };
@@ -434,7 +340,7 @@ LevelIntroState.prototype.draw = function(game, dt, ctx) //needs game, time elap
 /*
 Update is called in the loop like Draw, but it doesn't draw anything - it updates the state of the game.
 We could do this in draw, but draw should just faithfully render the current state untouched. 
-Why is this? Well we could actually call draw and update at different frequencies 
+Why? Well we could actually call draw and update at different frequencies 
 - for example if drawing is expensive we can call it ten times less often than update - 
 but still have the state of the system be updated at more regular intervals.
 */
@@ -478,54 +384,45 @@ function PlayState(config, level)
     //  Game state.
     this.invaderCurrentVelocity =  10; //enemy speed, will grow with level
     this.invaderCurrentDropDistance =  0; // how far they've moved downwards when they hit the edge of the screen
-    this.invadersAreDropping =  false; //a flag for whether they're dropping
-    this.lastRocketTime = null; //a time for when the last rocket was fired (so we can limit the number of rockets per second)
+    this.enemyAreDropping =  false; //a flag for whether they're dropping
  
     //  Game entities.
     this.ship = null; //create a hero
-    this.invaders = []; //create a set of the invaders
-    this.rockets = []; //create a set of rockets (they'll just be for show)
+    this.enemy = []; //create a set of the enemy
     this.bombs = []; //create a set of bombs (might not use this one)
 }
 
 /*
-  The ship has a position and that's about it. Used for colision detecting.
+  The ship has a position and that's about it. Used for colision detecting. Will trade for the planet later.
 */
 function Ship(x, y) //x and y are the position it's going to
 {
     this.x = x; //gives the ship the x position that came in the parameters
     this.y = y; //gives the ship the y position that came in the parameters
-    this.width = 20; //width of the ship (should find a way to scale it with the canvas size)
-    this.height = 16; //height of the ship (should find a way to scale it with the canvas size)
+    this.width = 500; //width of the ship (should find a way to scale it with the canvas size)
+    this.height = 10; //height of the ship (should find a way to scale it with the canvas size)
 }
  
 /*
-    Fired by the ship, they've got a position and velocity. PROBABLY USELESS LATER
+    Dropped by enemy, they've got position and velocity. There ain't much to comment here....
 */
-function Rocket(x, y, velocity) 
+function Bomb(velocity) 
 {
-    this.x = x;
-    this.y = y;
-    this.velocity = velocity;
-}
- 
-/*
-    Dropped by invaders, they've got position and velocity. There ain't much to comment here....
-*/
-function Bomb(x, y, velocity) 
-{
-    this.x = x; // The x position
-    this.y = y;	// The y position
+    this.x =Math.floor((Math.random() * 800) + 1); // The x position
+    this.y = 50;
     this.velocity = velocity; //The velocity it travels the screen
+    this.width = 40;
+    this.height =40;
 }
  
 /*
-    Enemies have position, type, rank/file and that's about it. 
+    enemy have position, type, rank/file and that's about it. 
 */
  
 function Invader(x, y, rank, file, type) 
 {
-    this.x = x; // The x position
+    //this.x = x; // The x position
+    this.x = Math.floor((Math.random() * 400) + 200); // The x position (remember the size of the bounds was not it fully)
     this.y = y; // The y position
     this.rank = rank; // Row position on the grid
     this.file = file; // Collum position on the grid
@@ -549,22 +446,22 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
 	this.bombMinVelocity = this.config.bombMinVelocity + (levelMultiplier * this.config.bombMinVelocity); // Also grows the speed of the shots
 	this.bombMaxVelocity = this.config.bombMaxVelocity + (levelMultiplier * this.config.bombMaxVelocity); // CAUSE SPECIAL EFFECTS ARE THE 
 
-	//  Create the invaders.
+	//  Create the enemy.
     var ranks = this.config.invaderRanks; //Rank of the invader (row)
     var files = this.config.invaderFiles; //File of the invader (column)
-    var invaders = []; // Stack of the invaders
-    for(var rank = 0; rank < ranks; rank++) //This controls the distance between invaders
+    var enemy = []; // Stack of the enemy
+    for(var rank = 0; rank < ranks; rank++) //This controls the distance between enemies. Might be the final part becomes useless since now they don't come in bacthes.
     {
         for(var file = 0; file < files; file++) 
         {
-            invaders.push(new Invader(
+            enemy.push(new Invader(
                 (game.width / 2) + ((files/2 - file) * 200 / files),
                 (game.gameBounds.top + rank * 20),
                 rank, file, 'Invader'));
         }
     }
-    this.invaders = invaders;
-    // Speed controllers for the invaders
+    this.enemy = enemy;
+    // Speed controllers for the enemy
     this.invaderCurrentVelocity = this.invaderInitialVelocity;
     this.invaderVelocity = {x: -this.invaderInitialVelocity, y:0};
     // NextVelocity - we use that when we move them downwards 
@@ -575,11 +472,10 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
  PlayState.prototype.update = function(game, dt) 
  {
     
-    /*  Will 'fire' the rocket/attack on the enemy when enter is hit */
+    /*  Will 'fire' the attack on the enemy when enter is hit */
     if(game.pressedKeys[13]) 
     {
-    	//window.alert("Enter pressed");
-        //this.fireRocket(); //most likely useless 
+    	//This kind of got changed by the 'bang' interaction
     }
  
     /*  Keep the ship in bounds. ANTI-FUCKY CODE RIGHT HERE BRUH*/
@@ -599,6 +495,7 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
         bomb.y += dt * bomb.velocity; // Moves that bomb downwards
  
         //  If the bomb has gone off the screen remove it.
+        
         /* splice can both add and/or remove items from an array*/
         /* Syntax: .splice(<position>, <remove>, <item_to_add>, <item_to_add>, ...), returns the removed item(s) */
         if(bomb.y > this.height) 
@@ -606,34 +503,19 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
             this.bombs.splice(i--, 1);
         }
     }
- 
-    //  Move each rocket, probably not going to use this... 
-    // (UNLESS I CAN FIGURE HOW TO DO HOMING ROCKETS IN CASE OF RIGHT ANSWER)
-    // (I MEAN MAKING IT ALWAYS HIT SHOULD BE EASY, MAKING IT NO LOOK LIKE CRAP ON THE OTHER HAND...)
-    // (I SHOULD REALLY GET SOME SLEEP)
-    // (CAPS LOCK IS THE CRUISE CONTROL FOR COOL)
-    // (GERUDO VALEY > BOLERO OF FIRE > ZELDA'S LUBALLY)
-    // (SO I GOT SIDE TRACKED HERE...)
-    for(i=0; i<this.rockets.length; i++) 
-    {
-        var rocket = this.rockets[i];
-        rocket.y -= dt * rocket.velocity;
- 
-        //  If the rocket has gone off the screen remove it.
-        if(rocket.y < 0) 
-        {
-            this.rockets.splice(i--, 1);
-        }
-    }
 
-    //  Move the invaders
+    //  Move the enemy
     var hitLeft = false, hitRight = false, hitBottom = false; // Used for checking bounds collision
-    for(i=0; i<this.invaders.length; i++) // Let's go trough all the enemies alive here
+    for(i=0; i<this.enemy.length; i++) // Let's go trough all the enemy alive here
     {
-        var invader = this.invaders[i]; // Selects a particular enemy
+        var invader = this.enemy[i]; // Selects a particular enemy
 
-        var newx = invader.x + this.invaderVelocity.x * dt; //Get's the future x position by the current x position + x velocity * delta (time)
-        var newy = invader.y + this.invaderVelocity.y * dt; //Get's the future y position by the current y position + y velocity * delta (time)
+        var newx = (invader.x + this.invaderVelocity.x * dt); //Get's the future x position by the current x position + x velocity * delta (time)
+
+        var newy = invader.y + 1//+ this.invaderVelocity.y * dt; //Get's the future y position by the current y position + y velocity * delta (time)
+        //var newx = Math.floor((Math.random() * 800) + 1); //TELEPORT THEM
+
+        
 
         if(hitLeft === false && newx < game.gameBounds.left) //checking to see if we've hit the left bound
         {
@@ -656,14 +538,14 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
     }
 
     //  Update invader velocities.
-    if(this.invadersAreDropping) // If the invaders are actually moving (Uses the Flag setup in PlayState config)
+    if(this.enemyAreDropping) // If the enemy are actually moving (Uses the Flag setup in PlayState config)
     {
         this.invaderCurrentDropDistance += this.invaderVelocity.y * dt;
 
         if(this.invaderCurrentDropDistance >= this.config.invaderDropDistance) 
         {
-        	// Speed goes up as the distance grows closer, increasing panic levels for dem kidz
-            this.invadersAreDropping = false;
+            // Speed goes up as the distance grows closer, increasing panic levels for dem kidz
+            this.enemyAreDropping = false;
             this.invaderVelocity = this.invaderNextVelocity;
             this.invaderCurrentDropDistance = 0;
         }
@@ -673,7 +555,7 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
     {
         this.invaderCurrentVelocity += this.config.invaderAcceleration; // Gets the current velocity for the enemy
         this.invaderVelocity = {x: 0, y:this.invaderCurrentVelocity }; // Stops horizontal movement, starts vertical movement
-        this.invadersAreDropping = true; // Sets the flag so we know the enemies are moving
+        this.enemyAreDropping = true; // Sets the flag so we know the enemy are moving
         this.invaderNextVelocity = {x: this.invaderCurrentVelocity , y:0}; // Stops vertical movement, re-starts horizontal movement on the oposite direction
     }
     //  If we've hit the right, move down then left.
@@ -681,7 +563,7 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
     {
         this.invaderCurrentVelocity += this.config.invaderAcceleration; // Gets the current velocity for the enemy
         this.invaderVelocity = {x: 0, y:this.invaderCurrentVelocity }; // Stops horizontal movement, starts vertical movement
-        this.invadersAreDropping = true; // Sets the flag so we know the enemies are moving
+        this.enemyAreDropping = true; // Sets the flag so we know the enemy are moving
         this.invaderNextVelocity = {x: -this.invaderCurrentVelocity , y:0}; // Stops vertical movement, re-starts horizontal movement on the oposite direction
     }
     //  If we've hit the bottom, loses one life.
@@ -690,39 +572,21 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
         this.lives -= 1;
     } 
 
+
     
     //  Check for right answers. This really needs ajusting.
-    // var solutionInput = document.getElementById("responsetxt");
+    // var resultbox = document.getElementById("responsetxt");
 
-    for(i=0; i<this.invaders.length; i++) // Goes trough every enemy
+    for(i=0; i<this.enemy.length; i++) // Goes trough every enemy
 			{ 
-		        var invader = this.invaders[i]; // Uses the particular enemy for checking based on i
+		        var invader = this.enemy[i]; // Uses the particular enemy for checking based on i
 		        var bang = false; //BEST VARIABLE NAME EVER OR WHAT?
 		        var redo = false; //for making another problem
-		 	
-		 		/* If it goes too fucky, you know where it happened, HERE
-		        for(var j=0; j<this.rockets.length; j++)
-		        {
-		            var rocket = this.rockets[j];
-		 
-		           
-		           	if(rocket.x >= (invader.x - invader.width/2) && rocket.x <= (invader.x + invader.width/2) &&
-		                rocket.y >= (invader.y - invader.height/2) && rocket.y <= (invader.y + invader.height/2)) 
-		            {
-		                
-		                //  Remove the rocket, set 'bang' so we don't process
-		                //  this rocket again.
-		                this.rockets.splice(j--, 1);
-		                bang = true;
-		                game.score += this.config.pointsPerInvader;
-		                break;
-		            }
-		        } */
 
-		        
-
-		        if(game.pressedKeys[13]) //THIS WILL BE THE TEST FOR RESULTS AND STUFF.I THINK.
+		        if(game.pressedKeys[13]) //THIS WILL BE THE TEST FOR RESULTS AND STUFF.I THINK. NEVERMIND, IT IS ACTUALLY USEFUL.
 		        {
+                    
+                    game.solution = game.firstNumber + game.secondNumber;
 		        	response =  document.getElementById("responsetxt").value;  //by id
 
 		        	if( response == game.solution)
@@ -730,6 +594,8 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
 
 		        	bang = true; //bang is when the answer is correct
 		            game.score += this.config.pointsPerInvader; //adds points when enemy is unalived
+                    game.firstNumber = Math.floor((Math.random() * 20) + 1);
+                    game.secondNumber = Math.floor((Math.random() * 20) + 1);
 		            
 		            //break;
 		        	}
@@ -738,24 +604,28 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
 
 		        if(bang) 
 		        {
-		            this.invaders.splice(i--, 1); //removes the enemy from the stack
+		            this.enemy.splice(i--, 1); //removes the enemy from the stack
+                    if(this.config.invaderRanks < this.level + 1)
+                    {
+                        this.config.invaderRanks++;
+                    }
 		            //break;
 		        }
 		        //break;
 		    }
 
   //-----------------------------------------Effects only-----------------------------------------------
-    //  Find all of the front rank invaders.
-    var frontRankInvaders = {};
-    for(var i=0; i<this.invaders.length; i++) 
+    //  Find all of the front rank enemy.
+    var frontRankenemy = {};
+    for(var i=0; i<this.enemy.length; i++) 
     {
-        var invader = this.invaders[i];
+        var invader = this.enemy[i];
         //  If we have no invader for game file, or the invader
         //  for game file is futher behind, set the front
         //  rank invader to game one.
-        if(!frontRankInvaders[invader.file] || frontRankInvaders[invader.file].rank < invader.rank) 
+        if(!frontRankenemy[invader.file] || frontRankenemy[invader.file].rank < invader.rank) 
         {
-            frontRankInvaders[invader.file] = invader;
+            frontRankenemy[invader.file] = invader;
         }
     }
  
@@ -763,22 +633,21 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
     //  Game settings make it so that the rate of bomb drops increases with each level
     for(var i=0; i<this.config.invaderFiles; i++) 
     {
-        var invader = frontRankInvaders[i];
+        var invader = frontRankenemy[i];
         if(!invader) continue;
         var chance = this.bombRate * dt;
         if(chance > Math.random()) 
         {
             //  Fire!
-            this.bombs.push(new Bomb(invader.x, invader.y + invader.height / 2,
-                this.bombMinVelocity + Math.random()*(this.bombMaxVelocity - this.bombMinVelocity)));
+            this.bombs.push(new Bomb( this.bombMinVelocity + Math.random()*(this.bombMaxVelocity - this.bombMinVelocity)));
         }
     } 
   //------------------------------------------------END------------------------------------------------
 
  //  Check for invader/ship collisions.
-    for(var i=0; i<this.invaders.length; i++) 
+    for(var i=0; i<this.enemy.length; i++) 
     {
-        var invader = this.invaders[i]; //Test per enemy
+        var invader = this.enemy[i]; //Test per enemy
 
         // Since we are drawing on canvas with simple shapes, we are only using their bounds to see hit
         // Might be changeable to just reaching bottom and does damage, test later
@@ -802,7 +671,7 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
     }
  
     //  Check for victory
-    if(this.invaders.length === 0)  //Is our game infinite? Maybe, if I feel like it.
+    if(this.enemy.length === 0)  //Is our game infinite? Maybe, if I feel like it.
     {
         game.score += this.level * 50; // We have to have leaderboards right?
         game.level += 1; // Moves to next level
@@ -810,17 +679,10 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
     }
 }; 
 
- PlayState.prototype.fireRocket = function() 
- { /* MIGHT BE USABLE IF I CAN MAKE THEM HOMING IN CASE OF RIGHT ANSWER
-    //  If we have no last rocket time, or the last rocket time 
-    //  is older than the max rocket rate, we can fire.
+ PlayState.prototype.fireAttack = function() 
+ { 
+    /* MIGHT BE USABLE IF I CAN MAKE A HOMING ANIMATION IN CASE OF RIGHT ANSWER
     
-    if(this.lastRocketTime === null || ((new Date()).valueOf() - this.lastRocketTime) > (1000 / this.config.rocketMaxFireRate))
-    {   
-        //  Add a rocket.
-        this.rockets.push(new Rocket(this.ship.x, this.ship.y - 12, this.config.rocketVelocity));
-        this.lastRocketTime = (new Date()).valueOf();
-    }
     */
 };
 
@@ -840,27 +702,30 @@ PlayState.prototype.draw = function(game, dt, ctx)
  
     //  Draw our pesky little enmies.
     ctx.fillStyle = '#006600';
-    for(var i=0; i<this.invaders.length; i++) 
+    for(var i=0; i<this.enemy.length; i++) 
     {
-        var invader = this.invaders[i];
-        ctx.fillRect(invader.x - invader.width/2, invader.y - invader.height/2, invader.width, invader.height);
+        var enemy = this.enemy[i];
+        ctx.fillRect(enemy.x - enemy.width/2, enemy.y - enemy.height/2, enemy.width, enemy.height);
     }
+
+    //Draw the problem.
+    ctx.font="36px Arial";
+    ctx.fillStyle = '#ffffff';
+    ctx.textBaseline="middle"; 
+    ctx.textAlign="center"; 
+    ctx.fillText("Opponent: " + game.firstNumber + game.symbol + game.secondNumber + " = ?", game.width / 2, game.height/9);
+    ctx.font="24px Arial";
+    
  
-    //  Draw bombs, you know, graphics makes the game. Not.
+    //  Draw bombs, you know, graphics makes the game. Not. CAUSE THEY ARE FREAKING GIGANTIC SQUARES
     ctx.fillStyle = '#ff5555';
     for(var i=0; i<this.bombs.length; i++) 
     {
         var bomb = this.bombs[i];
-        ctx.fillRect(bomb.x - 2, bomb.y - 2, 4, 4);
+        ctx.fillRect(bomb.x - 2, bomb.y - 2, 40, 40);
     }
  
-    //  Draw rockets if I ever manage to make them homing.
-    ctx.fillStyle = '#ff0000';
-    for(var i=0; i<this.rockets.length; i++) 
-    {
-        var rocket = this.rockets[i];
-        ctx.fillRect(rocket.x, rocket.y - 2, 1, 4);
-    }
+    
  
 }; 
 

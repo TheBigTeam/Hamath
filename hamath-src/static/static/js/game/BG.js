@@ -108,6 +108,8 @@ Starfield.prototype.draw = function()
  
     // Draw the background.
     ctx.fillStyle = '#000000'; //fill the background with black
+    ctx.fillStyle = 'ffffff'//'#000000'; //fill the background with black
+    
     ctx.fillRect(0, 0, this.width, this.height); //set the fill color to white
  
     //  Draw stars.
