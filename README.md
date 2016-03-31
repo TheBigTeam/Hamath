@@ -42,6 +42,8 @@ Now, from inside our activated virtual enviroment (*projectname-workspace*), pul
 git init
 git remote add origin https://github.com/TheBigTeam/hamath-workspace
 git pull origin master
+
+git update-index --assume-unchanged path/to/hamath_db
 ```
 
 You will get two projects: 
