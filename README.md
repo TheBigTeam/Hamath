@@ -44,6 +44,7 @@ git remote add origin https://github.com/TheBigTeam/hamath-workspace
 git pull origin master
 
 git update-index --assume-unchanged path/to/hamath_db
+git push --set-upstream origin milestone_name
 ```
 
 You will get two projects: 
