@@ -15,12 +15,10 @@ background: radial-gradient(circle,#3498db,white);
 .title {
     text-align: center;
     margin-bottom: 20px;
-
 }
 .buttons {
     margin-top: 50px;
     margin-left: 270px;
-
 }
 .btn {
     width: 200px;
