@@ -43,7 +43,7 @@ function Game()
 	};
 	 
 	//var problembox = document.getElementById("problemtxt"); // Won't be needed later, draw the problem instead of using this. Can be outside this file, just use response here and an affirmation response to change it?
-	var resultbox = document.getElementById("responsetxt"); 
+	var resultbox = document.getElementById("solutionInput"); 
 
 	// All state is in the variables below.
 	this.lives = 5; //Amount of times player can be hit
@@ -224,7 +224,7 @@ WelcomeState.prototype.draw = function(game, dt, ctx)  //receives the game state
     ctx.fillStyle = '#ffffff';
     ctx.textBaseline="center";
     ctx.textAlign="center";
-    ctx.fillText("The Hamath Game", game.width / 2, game.height/2 - 40);
+    ctx.fillText("The Hamath Game ", game.width / 2, game.height/2 - 40);
     ctx.font="16px Arial";
  
     ctx.fillText("Press 'Enter' to start.", game.width / 2, game.height/2); 
@@ -292,7 +292,7 @@ GameOverState.prototype.draw = function(game, dt, ctx)
     ctx.font="16px Arial";
     ctx.fillText("You scored " + game.score + " and got to level " + game.level, game.width / 2, game.height/2);
     ctx.font="16px Arial";
-    ctx.fillText("Press 'Space' to play again.", game.width / 2, game.height/2 + 40);   
+    ctx.fillText("Press 'Enter' to play again.", game.width / 2, game.height/2 + 40);   
 };
 
 GameOverState.prototype.keyDown = function(game, keyCode) 
@@ -575,7 +575,7 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
 
     
     //  Check for right answers. This really needs ajusting.
-    // var resultbox = document.getElementById("responsetxt");
+    // var resultbox = document.getElementById("solutionInput");
 
     for(i=0; i<this.enemy.length; i++) // Goes trough every enemy
 			{ 
@@ -587,7 +587,7 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
 		        {
                     
                     game.solution = game.firstNumber + game.secondNumber;
-		        	response =  document.getElementById("responsetxt").value;  //by id
+		        	response =  document.getElementById("solutionInput").value;  //by id
 
 		        	if( response == game.solution)
 		        	{
@@ -599,7 +599,7 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
 		            
 		            //break;
 		        	}
-		        	document.getElementById("responsetxt").value = "";
+		        	document.getElementById("solutionInput").value = "";
 		        }
 
 		        if(bang) 
