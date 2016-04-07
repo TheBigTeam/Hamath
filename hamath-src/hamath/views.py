@@ -49,7 +49,7 @@ def SignUp(request):
 
 def student_teacher_redirect(request):
     if teacher.views.is_teacher(request.user):
-        context = teacher.views.get_student_score(request)
+        context = teacher.views.get_student_scores(request)
         return render(request, 'teacher/teacher.html', context)
     else:
         return render(request, 'student/student.html', {})
