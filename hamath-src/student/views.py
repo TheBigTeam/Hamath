@@ -12,11 +12,3 @@ def GetScores(request):
 @login_required
 def HowToPlay(request):
 	return render(request, 'student/menu/how_to_play.html', {})
-
-
-"""
-class StudentView(View):
-    @login_required
-    def get(self, request):
-        return render(request, 'student.html', {})
-"""     

@@ -24,9 +24,9 @@
             {% for student in students %}
                 <tr>
                     <td>{{ student.first_name }} {{ student.last_name }}</td>
-                    <td> 19</td>
-                    <td> 17 </td>
-                    <td> 18 </td>
+                    <td> {{ student.score.rookie }} </td>
+                    <td> {{ student.score.intermediate }} </td>
+                    <td> {{ student.score.master }} </td>
                 </tr>
             {% endfor %}
         </table>

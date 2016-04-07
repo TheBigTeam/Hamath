@@ -6,9 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
 from hamath.forms import RegistrationForm, LoginForm
-from hamath.models import Student
-# from student.models import Student
 from hamath import settings
+from student.models import Score
 import teacher
 
 from django.views.generic.base import View, TemplateView
@@ -28,7 +27,15 @@ def SignUp(request):
                 email=form.cleaned_data['email'],
                 password=form.cleaned_data['password']
             )
+            score = Score(
+                user=User.objects.get(pk=user.pk),
+                rookie=0, 
+                intermediate=0, 
+                master=0
+            )
             user.save()
+            score.save()
+
             return HttpResponseRedirect(next)
         else:
             return TemplateResponse(request, 'hamath/signup.html', {'form': form})
