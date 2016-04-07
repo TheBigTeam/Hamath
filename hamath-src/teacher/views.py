@@ -8,20 +8,23 @@ from student.models import Score
 def is_teacher(user):
     return user.groups.filter(name='Teacher').exists()
 
-def get_student_score(request):
+def get_student_scores(request):
 	if is_teacher(request.user):
+		
+		# for score in Score.objects.all():
+		# 	print "name: " + str(score)
+		# 	print "rookie: " + str(score.rookie)
+		# 	print "inter: " + str(score.intermediate)
+		# 	print "master: " + str(score.master)
 
-		group = Group.objects.get(name='Student')
-		students = group.user_set.all()
-		# scores = 
-		return { 'students' : students }
+		return { 'scores' : Score.objects.all()}
 	else:
 		return None
 
 @login_required
 def Teacher(request):
 	if is_teacher(request.user):
-		context = get_student_score(request)
+		context = get_student_scores(request)
 		return render(request, 'teacher/teacher.html', context)
 	else:
 		return HttpResponseRedirect('access_denied')
