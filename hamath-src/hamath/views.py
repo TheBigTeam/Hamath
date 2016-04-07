@@ -36,6 +36,9 @@ def SignUp(request):
             user.save()
             score.save()
 
+            student_group = Group.objects.get(name=settings.DEFAULT_GROUP_NAME) 
+            student_group.user_set.add(user)
+            
             return HttpResponseRedirect(next)
         else:
             return TemplateResponse(request, 'hamath/signup.html', {'form': form})

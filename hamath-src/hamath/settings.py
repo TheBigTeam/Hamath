@@ -17,6 +17,7 @@ import json
 BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
 USE_POSTGRES = False
+DEFAULT_GROUP_NAME = 'Student'
 
 # print os.path.join(os.path.abspath(os.path.dirname(BASE_DIR)),
 # 'version.json')
