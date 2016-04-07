@@ -87,30 +87,26 @@ def Logout(request):
     logout(request)
     return HttpResponseRedirect(settings.HOME_URL)
 
-
 class HomeView(TemplateView):
     template_name = 'hamath/home.html'
-
 
 def About(request):
     return render(request, 'hamath/about.html', {'version': settings.VERSION})
 
-
 def Contact(request):
     return render(request, 'hamath/contact.html', {})
 
+def TeacherRequest(request):
+    return render(request, 'hamath/teacher-request.html', {})
 
 def my_custom_bad_request_view(request):
     return render(request, '400.html', {})
 
-
 def my_custom_permission_denied_view(request):
     return render(request, '403.html', {})
 
-
 def my_custom_page_not_found_view(request):
     return render(request, '404.html', {})
-
 
 def my_custom_error_view(request):
     return render(request, '500.html', {})
