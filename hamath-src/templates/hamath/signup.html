@@ -79,16 +79,20 @@
 	                </tr>
 	                <tr>
 	                    <td> 
-							<div class="submit">
-								<p><input class="btn btn-primary" type="submit" value="Submit"alt="register"></p>
+							<div class="register_div">
+								<div id="check-box-label"><p> Are you a Teacher?</p></div>
+								<div id="check-box">
+								    {% if form.is_applying_for_teacher_credentials.errors %}<p class="error">{{ form.is_applying_for_teacher_credentials.errors }}</p>{% endif %}
+									<p>{{ form.is_applying_for_teacher_credentials }}</p>
+									<p><label for="is_applying_for_teacher_credentials"{% if form.is_applying_for_teacher_credentials.errors %} class="error"{% endif %}></label> </p>
+								</div>
 							</div>
 						</td>
 	                </tr>
 	                <tr>
-	                <tr>
 	                    <td> 
 							<div class="submit">
-								<a href="{% url 'hamath.views.TeacherRequest' %}" class="btn btn-success">Are You A Teacher?</a>
+								<p><input class="btn btn-primary" type="submit" value="Submit" alt="register"></p>
 							</div>
 						</td>
 	                </tr>

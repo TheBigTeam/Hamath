@@ -8,6 +8,7 @@ class Student(models.Model):
 	username = models.CharField(max_length=50, null=True)
 	first_name = models.CharField(max_length=50, null=True)
 	last_name = models.CharField(max_length=50, null=True)
+	is_applying_for_teacher_credentials = models.BooleanField(default=False)
 
 	def get_full_name(self):
 		full_name = self.first_name + " " + self.last_name
