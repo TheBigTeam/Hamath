@@ -1,9 +1,5 @@
 //CHANGE IT LATER
 
-
-
-
-
 // Main game engine file, will control game state, keys, enemy and player
 // Ideia for later: Many loops do the same thing, could just use them at the same time
 // Actually use unit testing
@@ -24,21 +20,19 @@ function Game()
  	// Set the initial config.
 	this.config = //controls the game settings 
 	{ //do not, and I really mean it, DO NOT FORGET A ENTER OR A COMMA HERE
-		bombRate: 0.05,
-        bombMinVelocity: 50,
-        bombMaxVelocity: 50,
         invaderInitialVelocity: 25,
         invaderAcceleration: 0,
-        invaderDropDistance: 20,
+        invaderDropDistance: 10,
         gameWidth: 400,
-        gameHeight: 300,
+        gameHeight: 600,
         fps: 50,
         debugMode: false,
         invaderRanks: 1, //rows
         invaderFiles: 1, //collumns
         shipSpeed: 120,
-        levelDifficultyMultiplier: 0.2,
-        pointsPerInvader: 5
+        levelDifficultyMultiplier: 0.1,
+        pointsPerInvader: 5,
+        pauseToken: 1
 
 	};
 	 
@@ -387,9 +381,8 @@ function PlayState(config, level)
     this.enemyAreDropping =  false; //a flag for whether they're dropping
  
     //  Game entities.
-    this.ship = null; //create a hero
+    this.ship = null; //create a LIMIT LINE
     this.enemy = []; //create a set of the enemy
-    this.bombs = []; //create a set of bombs (might not use this one)
 }
 
 /*
@@ -403,17 +396,6 @@ function Ship(x, y) //x and y are the position it's going to
     this.height = 10; //height of the ship (should find a way to scale it with the canvas size)
 }
  
-/*
-    Dropped by enemy, they've got position and velocity. There ain't much to comment here....
-*/
-function Bomb(velocity) 
-{
-    this.x =Math.floor((Math.random() * 800) + 1); // The x position
-    this.y = 50;
-    this.velocity = velocity; //The velocity it travels the screen
-    this.width = 40;
-    this.height =40;
-}
  
 /*
     enemy have position, type, rank/file and that's about it. 
@@ -440,11 +422,8 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
     // Set the ship speed for this level, as well as invader params.
     // Makes sure things like the invader speed and bomb speed gets a bit faster each level.
 	var levelMultiplier = this.level * this.config.levelDifficultyMultiplier;
-	this.shipSpeed = this.config.shipSpeed; //Ship speed shoud not change, or even move at all (I think)
-	this.invaderInitialVelocity = this.config.invaderInitialVelocity + (levelMultiplier * this.config.invaderInitialVelocity); //Enemy speed grows every level
-	this.bombRate = this.config.bombRate + (levelMultiplier * this.config.bombRate); //So does the volume of shots (I mean, won't make a difference but LOOKS COOL BRUH)
-	this.bombMinVelocity = this.config.bombMinVelocity + (levelMultiplier * this.config.bombMinVelocity); // Also grows the speed of the shots
-	this.bombMaxVelocity = this.config.bombMaxVelocity + (levelMultiplier * this.config.bombMaxVelocity); // CAUSE SPECIAL EFFECTS ARE THE 
+	this.shipSpeed = this.config.shipSpeed; //Ship shoud not move at all, its  a limiter line
+	this.invaderInitialVelocity = this.config.invaderInitialVelocity + (levelMultiplier * this.config.invaderInitialVelocity); //Enemy speed grows every level 
 
 	//  Create the enemy.
     var ranks = this.config.invaderRanks; //Rank of the invader (row)
@@ -488,21 +467,6 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
         this.ship.x = game.gameBounds.right;
     }
 
-    //  Move each bomb downwards, until it's out of bounds.
-    for(var i=0; i<this.bombs.length; i++) 
-    {
-        var bomb = this.bombs[i]; // Gets a particular bomb in the array, based on i
-        bomb.y += dt * bomb.velocity; // Moves that bomb downwards
- 
-        //  If the bomb has gone off the screen remove it.
-        
-        /* splice can both add and/or remove items from an array*/
-        /* Syntax: .splice(<position>, <remove>, <item_to_add>, <item_to_add>, ...), returns the removed item(s) */
-        if(bomb.y > this.height) 
-        {
-            this.bombs.splice(i--, 1);
-        }
-    }
 
     //  Move the enemy
     var hitLeft = false, hitRight = false, hitBottom = false; // Used for checking bounds collision
@@ -629,19 +593,6 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
         }
     }
  
-    //  Give each front rank invader a chance to drop a bomb.
-    //  Game settings make it so that the rate of bomb drops increases with each level
-    for(var i=0; i<this.config.invaderFiles; i++) 
-    {
-        var invader = frontRankenemy[i];
-        if(!invader) continue;
-        var chance = this.bombRate * dt;
-        if(chance > Math.random()) 
-        {
-            //  Fire!
-            this.bombs.push(new Bomb( this.bombMinVelocity + Math.random()*(this.bombMaxVelocity - this.bombMinVelocity)));
-        }
-    } 
   //------------------------------------------------END------------------------------------------------
 
  //  Check for invader/ship collisions.
@@ -716,15 +667,7 @@ PlayState.prototype.draw = function(game, dt, ctx)
     ctx.fillText("Opponent: " + game.firstNumber + game.symbol + game.secondNumber + " = ?", game.width / 2, game.height/9);
     ctx.font="24px Arial";
     
- 
-    //  Draw bombs, you know, graphics makes the game. Not. CAUSE THEY ARE FREAKING GIGANTIC SQUARES
-    ctx.fillStyle = '#ff5555';
-    for(var i=0; i<this.bombs.length; i++) 
-    {
-        var bomb = this.bombs[i];
-        ctx.fillRect(bomb.x - 2, bomb.y - 2, 40, 40);
-    }
- 
+
     
  
 }; 
