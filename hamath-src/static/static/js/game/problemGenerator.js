@@ -1,4 +1,4 @@
-function (someJsFile) {
+function () {
 	var problemGenerator = {};
 
 	/*
