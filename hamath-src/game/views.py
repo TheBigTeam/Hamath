@@ -11,9 +11,8 @@ def PlayHamath(request):
 
 @csrf_exempt
 def RookieMode(request):
-	if request.method == 'POST' and request.POST.get("rookie", False) and request.user.is_authenticated():
-		rookie_mode_score = request.POST.get("rookie", False)
-		print rookie_mode_score
+	if request.method == 'POST' and request.POST.get("mode", False) == "rookie" and request.user.is_authenticated():
+		rookie_mode_score = request.POST.get("score", False)
 		user_score=Score.objects.get(user_id=request.user.pk)
 		user_score.rookie=rookie_mode_score
 		user_score.save()
@@ -24,8 +23,8 @@ def RookieMode(request):
 
 @csrf_exempt
 def IntermediateMode(request):
-	if request.method == 'POST' and request.POST.get("intermediate", False) and request.user.is_authenticated():
-		intermediate_mode_score = request.POST.get("intermediate", False)
+	if request.method == 'POST' and request.POST.get("mode", False) == "intermediate" and request.user.is_authenticated():
+		intermediate_mode_score = request.POST.get("score", False)
 		user_score=Score.objects.get(user_id=request.user.pk)
 		user_score.intermediate=intermediate_mode_score
 		user_score.save()
@@ -35,8 +34,8 @@ def IntermediateMode(request):
 
 @csrf_exempt
 def MasterMode(request):
-	if request.method == 'POST' and request.POST.get("master", False) and request.user.is_authenticated():
-		master_mode_score = request.POST.get("master", False)
+	if request.method == 'POST' and request.POST.get("mode", False) == "master" and request.user.is_authenticated():
+		master_mode_score = request.POST.get("score", False)
 		user_score=Score.objects.get(user_id=request.user.pk)
 		user_score.master=master_mode_score
 		user_score.save()

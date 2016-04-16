@@ -43,7 +43,7 @@ def SignUp(request):
                 master=0
             )
 
-            # save to databasea
+            # save to database
             user.save()
             score.save()
 

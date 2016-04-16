@@ -1,8 +1,8 @@
 import smtplib
 
 recipients = [
-	'alm0415@westminstercollege.edu',
-	'aidan.melen94@gmail.com'
+	'hamathgame@gmail.com',
+	'alm0415@westminstercollege.edu'
 ]
 
 def compose_message():
@@ -30,20 +30,18 @@ def send_thank_you_email(username, first_name, last_name, user_email_address):
 	send_email(TO, SUBJECT, TEXT)
 
 def send_email(TO, SUBJECT, TEXT):
-	user = 'hamathmathgame@gmail.com'
-	gmail_user = user
-	gmail_pwd = 'Helloworld'
-	FROM = user
-
+	gmail_user = 'hamathgame@gmail.com'
+	gmail_pwd = 'mrohyjgrclznttdx'
+	FROM = gmail_user
 	message = """\From: %s\nTo: %s\nSubject: %s\n\n%s
 	""" % (FROM, ", ".join(TO), SUBJECT, TEXT)
-	try:
-		server = smtplib.SMTP("smtp.gmail.com", 587)
-		server.ehlo()
-		server.starttls()
-		server.login(gmail_user, gmail_pwd)
-		server.sendmail(FROM, TO, message)
-		server.close()
-		print 'successfully sent the mail'
-	except:
-		print "failed to send mail"
+	# try:
+	server = smtplib.SMTP("smtp.gmail.com", 587)
+	server.ehlo()
+	server.starttls()
+	server.login(gmail_user, gmail_pwd)
+	server.sendmail(FROM, TO, message)
+	server.close()
+	print 'successfully sent the mail'
+	# except:
+	# 	print "failed to send mail"
