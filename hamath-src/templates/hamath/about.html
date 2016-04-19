@@ -10,53 +10,45 @@
 
 <div class="menu-container">
 	<div class="title">
-		<h3>
-			About Hamath
-		</h3>
-	</div>
-	<div>
+		<h1> About Us</h1>
 		<style>
 		table, th, td{
-			border: 1px solid black;
+			border: 1px transparent;
 			border-collapse: collapse;
+			align-items: center;
 		}
 		th, td{
 			padding: 15px;
 		}
 
+		h1{
+			color: #AED6F1;
+			text-align: center;
+			text-shadow: 2px 2px #2874A6  ;
+		}
+		h3{
+			color: #b3d9ff;
+		}
+		
 		</style>
 		<table style="width: 100%">
-		<tr>
-			<th> Name </th>
-			<th> Description </th>
-		</tr>
-		<tr>
-			<td><img src="{% static 'images/henrique.jpg' %}" alt= "" style= "width:40px; height:40px;"><i> Henrique </i> </t>
-			<td> <h6> I am Henrique and I worked with the game. I hope you like it!</h6> </td>
-		</tr>
-		<tr>
-			<td><img src="{% static 'images/armora.jpg' %}" alt= "" style= "width:40px; height:40px;"><i> Armora </i> </td>
-			<td><h6> I am Armora and I worked with the design of the website. I hope you like it! </h6> </td>
-		</tr>
-		<tr>
-			<td><img src="{% static 'images/aidan.jpg' %}" alt= "" style= "width:40px; height:40px;"><i> Aidan </i></td>
-			<td><h6> I am Aidan and I worked with the game as well. I hope you enjoy it! </h6> </td>
-		</tr>
-		<tr>
-			<td> <img src="{% static 'images/merritt.jpg' %}" alt= "" style= "width:40px; height:40px;"><i> Merritt </i></td>
-			<td> <h6> I am Merritt and I worked with the design and sounds. I hope you enjoy it! </h6></td>
-		</tr>
-			</table>
-</div>
-	<div class = "title">
-	<h1><i> MATH </i></h1>
-	<h1></h1>
-	<h1></h1>
-	<h1></h1>
-	<h1></h1>
-	<p> <h4><i>Hamath is a game for you to learn math by having fun. Math is awesome and our goal is to make you love it as much as we do. Our team works for you and we hope you will have so much fun that your favorite game will be Hamath. Our team is your team! Enjoy Hamath</h4></i></p>
-	<img src="{% static 'images/enemies/1r.png' %}" alt= "" style= "width:80px; height:80px;">
 
+		<tr>
+		<td><img src="{% static 'images/henrique.jpg' %}" alt= "" style= "width:120px; height:120px;" align="left"><h3><i>Henrique</h3></i></td>
+		<td><img src="{% static 'images/1b.png' %}" alt= "" style= "width:120px; height:120px;" align="bottom"></td>
+		</tr>
+		<tr><td><img src="{% static 'images/armora.jpg' %}" alt= "" style= "width:120px; height:120px;" align="left"><h3><i>Armora</h3></i></td>
+		<td></td>
+		<td><img src="{% static 'images/1r.png' %}" alt= "" style= "width:120px; height:120px;" align="bottom"></td>
+		</tr>
+		<tr><td><img src="{% static 'images/aidan.jpg' %}" alt= "" style= "width:120px; height:120px;" align="left"><h3><i>Aidan</h3></i></td>
+		<td><img src="{% static 'images/2y.png' %}" alt= "" style= "width:120px; height:120px;" align="bottom">
+		</tr>
+		<tr><td><img src="{% static 'images/merritt.jpg' %}" alt= "" style= "width:120px; height:120px;" align="left"><h3><i>Merrett</h3></i></td>
+		<td></td>
+		<td><img src="{% static 'images/3p.png' %}" alt= "" style= "width:120px; height:120px;" align="bottom"></td>
+		</tr>
+	</div>
 	</div>
 
 {% endblock %}

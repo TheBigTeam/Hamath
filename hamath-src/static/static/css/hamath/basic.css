@@ -1,16 +1,17 @@
 html,
 body
 {
-background: radial-gradient(circle,#3498db,white);
+background: radial-gradient(circle,#3498db,black);
 }
 .menu-container {
-    margin-top: 50;
+    margin-top: 10;
     margin-left: auto;
     margin-right: auto;
-    width: 800px;
-    height: 500px;
+    width: 1200px;
+    height: 800px;
     background: transparent;
     padding: 20px;
+    align-content: left
 }
 .title {
     text-align: center;
