@@ -11,6 +11,7 @@ class RegistrationForm(forms.ModelForm):
     last_name = forms.CharField(label=(u'Last Name'), widget=forms.TextInput(attrs={'placeholder': 'last name'}))
     password = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(attrs={'placeholder': 'password'}))
     password1 = forms.CharField(label=(u'Verify Password'), widget=forms.PasswordInput(attrs={'placeholder': 'verify password'}))
+    is_applying_for_teacher_credentials =forms.BooleanField(initial=False, required=False)
 
     class Meta:
         model = Student
@@ -31,6 +32,10 @@ class RegistrationForm(forms.ModelForm):
         if password and password != password1:
             raise forms.ValidationError("Passwords don't match")
         return self.cleaned_data
+
+    def __inint__(self):
+        if check_something():
+            self.fields['is_applying_for_teacher_credentials'].initial  = True
         
 class LoginForm(forms.Form):
     username = forms.CharField(label=(u'User Name'), widget=forms.TextInput(attrs={'placeholder': 'username'}))

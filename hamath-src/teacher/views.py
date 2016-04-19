@@ -17,7 +17,7 @@ def get_student_scores(request):
 		# 	print "inter: " + str(score.intermediate)
 		# 	print "master: " + str(score.master)
 
-		return { 'scores' : Score.objects.all()}
+		return { 'scores' : Score.objects.all() }
 	else:
 		return None
 

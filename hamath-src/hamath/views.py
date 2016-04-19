@@ -1,17 +1,16 @@
 from django.shortcuts import render
-# use group to authenticate teachers during signup
 from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.template.response import TemplateResponse
 from hamath.forms import RegistrationForm, LoginForm
-from hamath import settings
 from student.models import Score
+from hamath import settings
+import emailer
 import teacher
 
 from django.views.generic.base import View, TemplateView
-
 
 def SignUp(request):
     next = request.GET.get('next', settings.LOGIN_URL)
@@ -20,22 +19,63 @@ def SignUp(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
+
+            # reader input from form
+            username=form.cleaned_data['username']
+            first_name=form.cleaned_data['first_name'].title()
+            last_name=form.cleaned_data['last_name'].title()
+            email=form.cleaned_data['email']
+
+            # create user model
             user = User.objects.create_user(
-                username=form.cleaned_data['username'],
-                first_name=form.cleaned_data['first_name'].title(),
-                last_name=form.cleaned_data['last_name'].title(),
-                email=form.cleaned_data['email'],
+                username=username,
+                first_name=first_name,
+                last_name=last_name,
+                email=email,
                 password=form.cleaned_data['password']
             )
+
+            # create score model for user
             score = Score(
                 user=User.objects.get(pk=user.pk),
                 rookie=0, 
                 intermediate=0, 
                 master=0
             )
+
+            # save to database
             user.save()
             score.save()
 
+            # read input from checkbox
+            is_applying_for_teacher_credentials = form.cleaned_data['is_applying_for_teacher_credentials']
+
+            if is_applying_for_teacher_credentials:
+                # send email to admins
+                emailer.send_teacher_request_email(
+                    username,
+                    first_name,
+                    last_name,
+                    email
+                )
+
+                # send thank you email to user
+                emailer.send_thank_you_email_for_teacher_request(
+                    username,
+                    first_name,
+                    last_name,
+                    email
+                )
+            else:
+                 # send thank you email to user
+                emailer.send_thank_you_email(
+                    username,
+                    first_name,
+                    last_name,
+                    email
+                )
+
+            # put them in the student group because they have not been verified yet.
             student_group = Group.objects.get(name=settings.DEFAULT_GROUP_NAME) 
             student_group.user_set.add(user)
             
@@ -49,7 +89,7 @@ def SignUp(request):
 
 def student_teacher_redirect(request):
     if teacher.views.is_teacher(request.user):
-        context = teacher.views.get_student_score(request)
+        context = teacher.views.get_student_scores(request)
         return render(request, 'teacher/teacher.html', context)
     else:
         return render(request, 'student/student.html', {})
@@ -71,7 +111,6 @@ def Login(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                # return HttpResponseRedirect(settings.STUDENT_URL)
                 return student_teacher_redirect(request)
             else:
                 return TemplateResponse(request, 'hamath/login.html', {'form': form})
@@ -95,9 +134,6 @@ def About(request):
 
 def Contact(request):
     return render(request, 'hamath/contact.html', {})
-
-def TeacherRequest(request):
-    return render(request, 'hamath/teacher-request.html', {})
 
 def my_custom_bad_request_view(request):
     return render(request, '400.html', {})

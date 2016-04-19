@@ -33,3 +33,12 @@ input {
 .btn{
     width: 180px;
 }
+#check-box-label {
+    text-align: right;
+    text-align: bottom;
+    /*margin-top: -;*/
+    z-index: -100;
+}
+#check-box {
+    margin-top: -25;
+}

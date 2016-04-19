@@ -27,7 +27,6 @@ urlpatterns = [
     url(r'^student/', include('student.urls')),
     url(r'^teacher/', include('teacher.urls')),
     url(r'^signup/$', views.SignUp, name='SignUp'),
-    url(r'^request-teacher-credentials/$', views.TeacherRequest, name='TeacherRequest'),
     url(r'^login/$', views.Login, name='Login'),
     url(r'^logout/$', views.Logout, name='Logout'),
     url(r'^about/$', views.About, name='About'),
