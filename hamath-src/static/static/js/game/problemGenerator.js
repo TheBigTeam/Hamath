@@ -1,9 +1,9 @@
-<<<<<<< HEAD
+
 function testy() // Yes I made it really ugly to adjust difficulty.
 {
-=======
+
 function () {
->>>>>>> bd2ef23664e087687008b582edafa1300abbb00a
+
 	var problemGenerator = {};
 
 	/*
