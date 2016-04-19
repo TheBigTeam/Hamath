@@ -206,7 +206,7 @@ function Game()
 	this.intervalId = 0;
     this.score = 0;
     this.level = 1;
-    this.difficulty = 1;
+    this.difficulty = 2;
 
 
 
@@ -220,7 +220,7 @@ function Game()
     this.firstNumber = prob[0];
     this.symbol = prob[1];
     this.secondNumber = prob[2];
-    this.result = prob[3];
+    this.solution = prob[3];
 
     // Problem variables (test only as it stands)
     
@@ -718,7 +718,7 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
 		        if(game.pressedKeys[13]) //THIS WILL BE THE TEST FOR RESULTS AND STUFF.I THINK. NEVERMIND, IT IS ACTUALLY USEFUL.
 		        {
                     
-                    game.solution = game.firstNumber + game.secondNumber;
+                    //game.solution = game.result;
 		        	response =  document.getElementById("solutionInput").value;  //by id
 
 		        	if( response == game.solution)
@@ -726,8 +726,15 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
 
 		        	bang = true; //bang is when the answer is correct
 		            game.score += this.config.pointsPerInvader; //adds points when enemy is unalived
-                    game.firstNumber = Math.floor((Math.random() * 20) + 1);
-                    game.secondNumber = Math.floor((Math.random() * 20) + 1);
+                    
+                    problemGen = new Testy();
+
+                    var proby = problemGen.ProblemGeneratorView().setRandomProblem(game.difficulty);
+
+                    game.firstNumber = proby[0];
+                    game.symbol = proby[1];
+                    game.secondNumber = proby[2];
+                    game.solution = proby[3];
 		            
 		            //break;
 		        	}
