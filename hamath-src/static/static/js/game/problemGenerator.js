@@ -2,7 +2,7 @@
 function testy() // Yes I made it really ugly to adjust difficulty.
 {
 
-function () {
+
 
 	var problemGenerator = {};
 
@@ -19,21 +19,24 @@ function () {
 		/*
 		 * Get a random digit 1-10
 		 */
-		self.getDigit = function(min,max) {
+		self.getDigit = function(min,max) 
+		{
 			return (Math.floor((Math.random() * max) + min));
 		};
 
 		/*
 		 * get random operation +, -, *, /
 		 */
-		self.getOperator = function(numberOfOperations) {
+		self.getOperator = function(numberOfOperations) 
+		{
 			return self.operators[Math.floor((Math.random() * numberOfOperations) + 0)];
 		};
 
 		/*
 		 * get the solution from the problem parameters
 		 */
-		self.evaluateSolution = function(a, b, operator) {
+		self.evaluateSolution = function(a, b, operator) 
+		{
 			var solution = null;
 
 			if (operator === "+") {
@@ -54,7 +57,8 @@ function () {
 		/*
 		 * Validate the User's attempt
 		 */
-		self.isAttemptCorrect = function(attempt, solution) {
+		self.isAttemptCorrect = function(attempt, solution) 
+		{
 			if (attempt === solution) {
 				return true;
 			} else {
@@ -65,7 +69,8 @@ function () {
 		/*
 		 * get problem array firstDigit, Operator, secondDigit, solution
 		 */
-		self.setRandomProblem = function(difficulty) {
+		self.setRandomProblem = function(difficulty) 
+		{
 			var a = null;
 			var b = null;
 			var operator = null;

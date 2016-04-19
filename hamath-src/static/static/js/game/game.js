@@ -14,8 +14,167 @@
 /*
 	Making the screen onResize should help a little, look that up later
 */
+
+var Testy = function() // Yes I made it really ugly to adjust difficulty.
+{
+
+
+
+    var problemGenerator = {};
+
+    /*
+     * Constructor function
+     */
+    problemGenerator.ProblemGeneratorView = function(difficulty) 
+    {
+        var self = this;
+
+        self.operators = ['+','-','*','/'];
+        self.difficulty = difficulty;
+
+        /*
+         * Get a random digit 1-10
+         */
+        self.getDigit = function(min,max) 
+        {
+            return (Math.floor((Math.random() * max) + min));
+        };
+
+        /*
+         * get random operation +, -, *, /
+         */
+        self.getOperator = function(numberOfOperations) 
+        {
+            return self.operators[Math.floor((Math.random() * numberOfOperations) + 0)];
+        };
+
+        /*
+         * get the solution from the problem parameters
+         */
+        self.evaluateSolution = function(a, b, operator) 
+        {
+            var solution = null;
+
+            if (operator === "+") {
+                solution = a + b;
+            }
+            if (operator === '-') {
+                solution = a - b;
+            }
+            if (operator === '*') {
+                solution = a * b;
+            }
+            if (operator === '/') {
+                solution = a / b;
+            }
+            return solution;
+        };
+
+        /*
+         * Validate the User's attempt
+         */
+        self.isAttemptCorrect = function(attempt, solution) 
+        {
+            if (attempt === solution) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+
+        /*
+         * get problem array firstDigit, Operator, secondDigit, solution
+         */
+        self.setRandomProblem = function(difficulty) 
+        {
+            var a = null;
+            var b = null;
+            var operator = null;
+            var solution = null;
+
+            if (difficulty == 1) 
+            {
+                a = self.getDigit(1,20);
+                b = self.getDigit(1,20);
+                operator = self.getOperator(0); //sum
+            }
+
+            if (difficulty == 2)  //sum and negative
+            {
+                a = self.getDigit(1,40);
+                b = self.getDigit(1,20);
+                operator = self.getOperator(2);
+
+                if (operator === "-")
+                {
+                    while (a < b)
+                    {
+                        a = self.getDigit(1,40);
+                        b = self.getDigit(1,20);
+                    }
+                }
+            }
+            if (difficulty == 3)  //EVERYTHING
+            {
+                a = self.getDigit(1,100);
+                b = self.getDigit(1,33);
+                operator = self.getOperator(4);
+
+
+                if (operator === "-")
+                {
+                    a = self.getDigit(1,100);
+                    b = self.getDigit(1,33);
+                    while (a < b)
+                    {
+                        a = self.getDigit(1,100);
+                        b = self.getDigit(1,33);
+                    }
+                }
+
+                if (operator === "*")
+                {
+                    while (a%b!=0)
+                    {
+                        a = self.getDigit(1,100);
+                        b = self.getDigit(1,10);
+                    }
+                }
+
+                if (operator === "/")
+                {
+                    while (a%b!=0)
+                    {
+                        a = self.getDigit(1,100);
+                        b = self.getDigit(1,33);
+                    }
+                }
+            }
+
+            solution = self.evaluateSolution(a, b, operator);
+
+            return [a, operator, b, solution];
+        };
+
+        return self;
+    };
+
+    return problemGenerator;
+}
+
+
+
+//alert(problemGen.ProblemGeneratorView().setRandomProblem(3));
+
+
+    //
+
+
+
 function Game() 
 {
+
+    var problemGen = new Testy();
  
  	// Set the initial config.
 	this.config = //controls the game settings 
@@ -32,8 +191,8 @@ function Game()
         shipSpeed: 120,
         levelDifficultyMultiplier: 0.1,
         pointsPerInvader: 5,
-        pauseToken: 1
-
+        pauseToken: 1,
+        aux: 1
 	};
 	 
 	//var problembox = document.getElementById("problemtxt"); // Won't be needed later, draw the problem instead of using this. Can be outside this file, just use response here and an affirmation response to change it?
@@ -49,10 +208,19 @@ function Game()
     this.level = 1;
     this.difficulty = 1;
 
-    this.firstNumber = Math.floor((Math.random() * 20) + 1);
+
+
+    /*this.firstNumber = Math.floor((Math.random() * 20) + 1);
     this.secondNumber = Math.floor((Math.random() * 20) + 1);
     this.symbol = "+";
-    this.result = 0;
+    this.result = 0;*/
+
+    var prob = problemGen.ProblemGeneratorView().setRandomProblem(this.difficulty);
+
+    this.firstNumber = prob[0];
+    this.symbol = prob[1];
+    this.secondNumber = prob[2];
+    this.result = prob[3];
 
     // Problem variables (test only as it stands)
     
