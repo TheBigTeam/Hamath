@@ -1,5 +1,5 @@
 html, body {
-    background-color: #eee;
+    background: radial-gradient(circle,#3498db,black);
 }
 .menu-container {
     margin-top: 50;

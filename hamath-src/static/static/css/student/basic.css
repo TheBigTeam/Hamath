@@ -1,6 +1,6 @@
 html,
 body {
-    background: radial-gradient(circle,#3498db,white);
+    background: radial-gradient(circle,#3498db,black);
 }
 .menu-container {
     margin-top: 50;
