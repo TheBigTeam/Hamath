@@ -162,19 +162,29 @@ var Testy = function() // Yes I made it really ugly to adjust difficulty.
     return problemGenerator;
 }
 
+var saveScore = function(gameMode, score)
+{
+    var URL = gameMode + "_mode";
 
+    // game_mode and score are hardcoded for the sake of example
+    var gameData = 
+    {
+        "mode" : gameMode,
+        "score" : score
+    };
 
-//alert(problemGen.ProblemGeneratorView().setRandomProblem(3));
-
-
-    //
-
-
+    $.post(URL, gameData, function(data,status)
+    {
+        // if (status==="success") { alert("your score of " + score + " was saved." } );
+        // else { alert("Sorry but your score was not saved.\nStatus: " + status }
+    });
+}();
 
 function Game() 
 {
 
     var problemGen = new Testy();
+
  
  	// Set the initial config.
 	this.config = //controls the game settings 
@@ -195,11 +205,11 @@ function Game()
         aux: 1
 	};
 	 
-	//var problembox = document.getElementById("problemtxt"); // Won't be needed later, draw the problem instead of using this. Can be outside this file, just use response here and an affirmation response to change it?
 	var resultbox = document.getElementById("solutionInput"); 
+    var mode = "rookie";
 
 	// All state is in the variables below.
-	this.lives = 5; //Amount of times player can be hit
+	this.lives = 5; //Amount of times player can be hit OR NOT CAUSE I KILL THE GAME WHEN SOMETHING HITS BOTTOM
 	this.width = 0; //
 	this.height = 0; //
 	this.gameBound = {left: 0, top: 0, right: 0, bottom: 0};
@@ -209,11 +219,6 @@ function Game()
     this.difficulty = 2;
 
 
-
-    /*this.firstNumber = Math.floor((Math.random() * 20) + 1);
-    this.secondNumber = Math.floor((Math.random() * 20) + 1);
-    this.symbol = "+";
-    this.result = 0;*/
 
     var prob = problemGen.ProblemGeneratorView().setRandomProblem(this.difficulty);
 
@@ -455,6 +460,8 @@ GameOverState.prototype.draw = function(game, dt, ctx)
     ctx.fillText("You scored " + game.score + " and got to level " + game.level, game.width / 2, game.height/2);
     ctx.font="16px Arial";
     ctx.fillText("Press 'Enter' to play again.", game.width / 2, game.height/2 + 40);   
+
+    saveScore(game.mode, game.score);
 };
 
 GameOverState.prototype.keyDown = function(game, keyCode) 

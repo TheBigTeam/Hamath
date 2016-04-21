@@ -10,6 +10,7 @@ def PlayHamath(request):
 
 @csrf_exempt
 def RookieMode(request):
+	print request.POST.get("mode", False)
 	if request.method == 'POST' and request.POST.get("mode", False) == "rookie" and request.user.is_authenticated():
 		rookie_mode_score = request.POST.get("score", False)
 		user_score=Score.objects.get(user_id=request.user.pk)
