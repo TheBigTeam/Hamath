@@ -32,16 +32,14 @@ background: radial-gradient(circle,#3498db,black);
     height: 50px;
     margin-top: 10px;
 }
-<<<<<<< HEAD
 
-.version {
+.contact {
   color:white;
-
 }
-=======
+
+
 #version
 {
     text-align: center;
     color: white;
 }
->>>>>>> 945283d772b64bc2d591d92b2516c91f7184d1dc
