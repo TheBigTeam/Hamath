@@ -2,9 +2,12 @@
 
 {% load staticfiles %}
 
-{% block head_title %} Contact - {{ block.super }}{% endblock %}
+{% block head_title %} Contact {% endblock %}
 
 {% block content %}
+
+<link href="{% static 'css/hamath/basic.css' %}" rel="stylesheet">
+
 
 <h1>Contact</h1>
 <form role="form" action="" method="post">
