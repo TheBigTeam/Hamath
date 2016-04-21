@@ -36,7 +36,7 @@ class RegistrationForm(forms.ModelForm):
     def __inint__(self):
         if check_something():
             self.fields['is_applying_for_teacher_credentials'].initial  = True
-        
+
 class LoginForm(forms.Form):
     username = forms.CharField(label=(u'User Name'), widget=forms.TextInput(attrs={'placeholder': 'username'}))
     password = forms.CharField(label=(u'Password'), widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
@@ -48,3 +48,8 @@ class LoginForm(forms.Form):
         if not user or not user.is_active:
             raise forms.ValidationError("Sorry, that login was invalid. Please try again.")
         return self.cleaned_data
+
+class ContactForm(forms.Form):
+ contact_name = forms.CharField(required=True)
+ contact_email = forms.EmailField(required=True)
+ message_content = forms.CharField(required=True,widget=forms.Textarea)
