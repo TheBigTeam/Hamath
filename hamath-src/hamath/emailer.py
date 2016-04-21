@@ -29,9 +29,15 @@ def send_thank_you_email(username, first_name, last_name, user_email_address):
 	TEXT = "Thank you for signing up with Hamath! \n\nUSER INFORMATION\nUSERNAME: %s\nFIRSTNAME: %s\n LASTNAME: %s" % (str(first_name.title()), str(last_name.title()), str(username))
 	send_email(TO, SUBJECT, TEXT)
 
+def send_contact_email(user_name, email_address, message_content):
+	TO = recipients
+	SUBJECT = "New Message!\n\n"
+	TEXT = message_content
+	send_email(TO, SUBJECT, TEXT)
+
 def send_email(TO, SUBJECT, TEXT):
 	gmail_user = 'hamathgame@gmail.com'
-	gmail_pwd = 'mrohyjgrclznttdx'
+	gmail_pwd = 'Helloworld'
 	FROM = gmail_user
 	message = """\From: %s\nTo: %s\nSubject: %s\n\n%s
 	""" % (FROM, ", ".join(TO), SUBJECT, TEXT)

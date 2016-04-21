@@ -7,6 +7,9 @@ from django.template.response import TemplateResponse
 from hamath.forms import RegistrationForm, LoginForm
 from student.models import Score
 from hamath import settings
+from hamath.forms import ContactForm
+from django.template.loader import get_template
+from django.template import Context
 import emailer
 import teacher
 
@@ -38,8 +41,8 @@ def SignUp(request):
             # create score model for user
             score = Score(
                 user=User.objects.get(pk=user.pk),
-                rookie=0, 
-                intermediate=0, 
+                rookie=0,
+                intermediate=0,
                 master=0
             )
 
@@ -76,9 +79,9 @@ def SignUp(request):
                 )
 
             # put them in the student group because they have not been verified yet.
-            student_group = Group.objects.get(name=settings.DEFAULT_GROUP_NAME) 
+            student_group = Group.objects.get(name=settings.DEFAULT_GROUP_NAME)
             student_group.user_set.add(user)
-            
+
             return HttpResponseRedirect(next)
         else:
             return TemplateResponse(request, 'hamath/signup.html', {'form': form})
@@ -133,7 +136,32 @@ def About(request):
     return render(request, 'hamath/about.html', {'version': settings.VERSION})
 
 def Contact(request):
-    return render(request, 'hamath/contact.html', {})
+    next = request.GET.get('next', settings.HOME_URL)
+    form_class = ContactForm
+
+    if request.method == 'POST':
+        form = form_class(data=request.POST)
+
+        if form.is_valid():
+            contact_name = request.POST.get('contact_name', '')
+            contact_email = request.POST.get('contact_email', '')
+            message_content = request.POST.get('message_content', '')
+
+            print contact_name
+            print contact_email
+            print message_content
+
+            emailer.send_contact_email(
+                contact_name,
+                contact_email,
+                message_content
+            )
+            return HttpResponseRedirect(next)
+        else:
+            return TemplateResponse(request, 'hamath/contact.html', {'form': form_class})
+    else:
+        form = RegistrationForm()
+        return TemplateResponse(request, 'hamath/contact.html', {'form': form_class})
 
 def my_custom_bad_request_view(request):
     return render(request, '400.html', {})
