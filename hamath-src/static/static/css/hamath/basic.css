@@ -32,3 +32,8 @@ background: radial-gradient(circle,#3498db,black);
     height: 50px;
     margin-top: 10px;
 }
+
+.version {
+  color:white;
+
+}
