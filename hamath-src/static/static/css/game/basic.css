@@ -32,12 +32,18 @@ body, html {
 	text-align: center;
 }
 
-.problem {
-	margin-top: -600px;
+input {
+	z-index: 9999;
 	text-align: left;
-}
+	position: absolute;
+	margin-top: -1095;
+	margin-left: 542;
+	margin-right: auto;
 
-.solution {
-	margin-top: -40px;
-	text-align: right;
+	height: 30px;
+	wdith: 10px;
+	background: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
 }

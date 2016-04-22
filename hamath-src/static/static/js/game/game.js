@@ -17,9 +17,6 @@
 
 var Testy = function() // Yes I made it really ugly to adjust difficulty.
 {
-
-
-
     var problemGenerator = {};
 
     /*
@@ -182,10 +179,8 @@ var saveScore = function(gameMode, score)
 
 function Game() 
 {
-
     var problemGen = new Testy();
 
- 
  	// Set the initial config.
 	this.config = //controls the game settings 
 	{ //do not, and I really mean it, DO NOT FORGET A ENTER OR A COMMA HERE
@@ -846,7 +841,7 @@ PlayState.prototype.draw = function(game, dt, ctx)
     ctx.fillStyle = '#ffffff';
     ctx.textBaseline="middle"; 
     ctx.textAlign="center"; 
-    ctx.fillText("Opponent: " + game.firstNumber + game.symbol + game.secondNumber + " = ?", game.width / 2, game.height/9);
+    ctx.fillText("Opponent: " + game.firstNumber + game.symbol + game.secondNumber + " =   ", game.width / 2, game.height/9);
     ctx.font="24px Arial";
     
 
