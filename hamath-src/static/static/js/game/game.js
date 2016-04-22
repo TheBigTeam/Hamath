@@ -841,7 +841,7 @@ PlayState.prototype.draw = function(game, dt, ctx)
     ctx.fillStyle = '#ffffff';
     ctx.textBaseline="middle"; 
     ctx.textAlign="center"; 
-    ctx.fillText("Opponent: " + game.firstNumber + game.symbol + game.secondNumber + " =   ", game.width / 2, game.height/9);
+    ctx.fillText("Opponent: " + game.firstNumber + game.symbol + game.secondNumber + " =", game.width / 2, 450);
     ctx.font="24px Arial";
     
 
