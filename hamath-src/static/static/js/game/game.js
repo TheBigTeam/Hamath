@@ -159,7 +159,7 @@ var Testy = function() // Yes I made it really ugly to adjust difficulty.
     return problemGenerator;
 }
 
-var saveScore = function(gameMode, score)
+function SaveScore(gameMode, score)
 {
     var URL = gameMode + "_mode";
 
@@ -175,7 +175,8 @@ var saveScore = function(gameMode, score)
         // if (status==="success") { alert("your score of " + score + " was saved." } );
         // else { alert("Sorry but your score was not saved.\nStatus: " + status }
     });
-}();
+};
+
 
 function Game() 
 {
@@ -201,7 +202,7 @@ function Game()
 	};
 	 
 	var resultbox = document.getElementById("solutionInput"); 
-    var mode = "rookie";
+    this.mode = "rookie";
 
 	// All state is in the variables below.
 	this.lives = 5; //Amount of times player can be hit OR NOT CAUSE I KILL THE GAME WHEN SOMETHING HITS BOTTOM
@@ -455,14 +456,15 @@ GameOverState.prototype.draw = function(game, dt, ctx)
     ctx.fillText("You scored " + game.score + " and got to level " + game.level, game.width / 2, game.height/2);
     ctx.font="16px Arial";
     ctx.fillText("Press 'Enter' to play again.", game.width / 2, game.height/2 + 40);   
-
-    saveScore(game.mode, game.score);
 };
 
 GameOverState.prototype.keyDown = function(game, keyCode) 
 {
     if(keyCode == 13) /*space*/ 
     {
+        // post score to server.
+        SaveScore(game.mode, game.score);
+
         //  Enter restarts the game.
         game.lives = 1;
         game.score = 0;
