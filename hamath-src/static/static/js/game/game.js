@@ -202,7 +202,8 @@ function Game()
 	};
 	 
 	var resultbox = document.getElementById("solutionInput"); 
-    this.mode = document.getElementById("mode"); 
+    var temp_mode = document.getElementById("mode").outerText; 
+    this.mode = temp_mode.substr(0, temp_mode.indexOf(" ")).toLowerCase();
 
 	// All state is in the variables below.
 	this.lives = 5; //Amount of times player can be hit OR NOT CAUSE I KILL THE GAME WHEN SOMETHING HITS BOTTOM
@@ -844,11 +845,7 @@ PlayState.prototype.draw = function(game, dt, ctx)
     ctx.textBaseline="middle"; 
     ctx.textAlign="right"; 
     ctx.fillText("Opponent: " + game.firstNumber + game.symbol + game.secondNumber + " =", game.width / 2 + 20, 400);
-    ctx.font="24px Arial";
-    
-
-    
- 
+    ctx.font="24px Arial"; 
 }; 
 
 
