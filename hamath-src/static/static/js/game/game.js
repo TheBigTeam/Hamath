@@ -202,7 +202,7 @@ function Game()
 	};
 	 
 	var resultbox = document.getElementById("solutionInput"); 
-    this.mode = "rookie";
+    this.mode = document.getElementById("mode"); 
 
 	// All state is in the variables below.
 	this.lives = 5; //Amount of times player can be hit OR NOT CAUSE I KILL THE GAME WHEN SOMETHING HITS BOTTOM
@@ -828,7 +828,7 @@ PlayState.prototype.draw = function(game, dt, ctx)
     //  Draw ship.
     // Let's change it to an actual image later ok?
     ctx.fillStyle = '#999999';
-    ctx.fillRect(this.ship.x - (this.ship.width / 2), this.ship.y - (this.ship.height / 2), this.ship.width, this.ship.height);
+    ctx.fillRect(this.ship.x - (this.ship.width / 2), this.ship.y - (this.ship.height / 2), this.ship.width, 0);
  
     //  Draw our pesky little enmies.
     ctx.fillStyle = '#006600';
@@ -842,8 +842,8 @@ PlayState.prototype.draw = function(game, dt, ctx)
     ctx.font="36px Arial";
     ctx.fillStyle = '#ffffff';
     ctx.textBaseline="middle"; 
-    ctx.textAlign="center"; 
-    ctx.fillText("Opponent: " + game.firstNumber + game.symbol + game.secondNumber + " =", game.width / 2, 450);
+    ctx.textAlign="right"; 
+    ctx.fillText("Opponent: " + game.firstNumber + game.symbol + game.secondNumber + " =", game.width / 2 + 20, 400);
     ctx.font="24px Arial";
     
 
