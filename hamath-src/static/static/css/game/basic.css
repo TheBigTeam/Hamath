@@ -28,8 +28,8 @@ body, html {
 } 
 
 .planet-earth {
-	margin-top: -125px;
 	text-align: center;
+	margin-top: -130;
 }
 
 input {

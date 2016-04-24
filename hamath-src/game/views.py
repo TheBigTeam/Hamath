@@ -29,7 +29,7 @@ def IntermediateMode(request):
 		user_score.save()
 		return render(request, 'game/intermediate_mode.html', {})
 	else:
-		return render(request, 'game/rookie_mode.html', {})
+		return render(request, 'game/intermediate_mode.html', {})
 
 @csrf_exempt
 def MasterMode(request):
