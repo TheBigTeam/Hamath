@@ -7,7 +7,7 @@ html, body {
     margin-right: auto;
     width: 800px;
     height: 500px;
-    background: white;
+    background: transparent;
     padding: 20px;
 }
 .title {
