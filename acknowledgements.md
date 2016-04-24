@@ -1,0 +1,2 @@
+Our javascript game is based on space invaders by dwmkerr.
+https://github.com/dwmkerr/spaceinvaders
