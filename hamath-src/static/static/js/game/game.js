@@ -213,7 +213,21 @@ function Game()
 	this.intervalId = 0;
     this.score = 0;
     this.level = 1;
-    this.difficulty = 2;
+    
+
+    if(this.mode === "rookie")
+    {
+        this.difficulty = 1;
+    }
+    else if(this.mode === "intermediate")
+    {
+        this.difficulty = 2;
+    }
+    else if(this.mode === "master")
+    {
+        this.difficulty = 3;
+    }
+
 
 
 
