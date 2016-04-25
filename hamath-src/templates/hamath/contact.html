@@ -8,14 +8,15 @@
 
 <link href="{% static 'css/hamath/basic.css' %}" rel="stylesheet">
 
-<div class = "contact">
+<font color="white">
 <h1>Contact</h1>
 <form role="form" action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-  </div>
+
     <button type="submit">Submit</button>
 </form>
-
+</font>
+</div>
 
 {% endblock %}
