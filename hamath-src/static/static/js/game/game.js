@@ -862,7 +862,11 @@ PlayState.prototype.draw = function(game, dt, ctx)
     ctx.clearRect(0, 0, game.width, game.height);
 
     var img = new Image();
+     img.style.height = 50px;
+    img.style.weidth = 50px;
     
+   
+  
  //get the image from this URL
    img.src = 'https://github.com/TheBigTeam/hamath-workspace/blob/master/hamath-src/static/static/images/enemies/1b.png?raw=true';
     
