@@ -177,6 +177,28 @@ function SaveScore(gameMode, score)
     });
 };
 
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }
+}
+
+
+function playSong(){
+    var mySound; 
+
+    mySound = new sound("http://www.oocities.org/gchafe/redwing.wav");
+    mySound.play();
+}
 
 function Game() 
 {
@@ -387,6 +409,7 @@ function WelcomeState()  // Creates a class for the state
 {
  	//Won't have anything here, PROTOTYPE TIME~~
 } 
+
 
 WelcomeState.prototype.draw = function(game, dt, ctx)  //receives the game state, the elapsed time and the drawing context
 {
@@ -828,6 +851,7 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
     */
 };
 
+
 PlayState.prototype.draw = function(game, dt, ctx) 
 { 
 	// Just looping through the game entities and drawing primitives
@@ -836,6 +860,11 @@ PlayState.prototype.draw = function(game, dt, ctx)
  
     //  Clear the background.
     ctx.clearRect(0, 0, game.width, game.height);
+
+    var img = new Image();
+    
+ //get the image from this URL
+   img.src = 'https://github.com/TheBigTeam/hamath-workspace/blob/master/hamath-src/static/static/images/enemies/1b.png?raw=true';
     
     //  Draw endLine.
     // Let's change it to an actual image later ok?
@@ -845,10 +874,12 @@ PlayState.prototype.draw = function(game, dt, ctx)
     //  Draw our pesky little enmies.
     ctx.fillStyle = '#006600';
     for(var i=0; i<this.enemy.length; i++) 
-    {
+        {
         var enemy = this.enemy[i];
-        ctx.fillRect(enemy.x - enemy.width/2, enemy.y - enemy.height/2, enemy.width, enemy.height);
-    }
+        img.onload = function () 
+        {           
+            ctx.drawImage(img, enemy.x - enemy.width/2, enemy.y - enemy.height/2);
+        }
 
     //Draw the problem.
     ctx.font="36px Arial";
