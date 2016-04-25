@@ -191,12 +191,10 @@ function Game()
         gameWidth: 400,
         gameHeight: 600,
         fps: 50,
-        debugMode: false,
         invaderRanks: 1, //rows
         invaderFiles: 1, //collumns
-        shipSpeed: 120,
+        endLineSpeed: 0,
         levelDifficultyMultiplier: 0.1,
-        pointsPerInvader: 5,
         pauseToken: 1,
         aux: 1
 	};
@@ -206,12 +204,12 @@ function Game()
     this.mode = temp_mode.substr(0, temp_mode.indexOf(" ")).toLowerCase();
 
 	// All state is in the variables below.
-	this.lives = 5; //Amount of times player can be hit OR NOT CAUSE I KILL THE GAME WHEN SOMETHING HITS BOTTOM
+	this.lives = 1; //Amount of times player can be hit OR NOT CAUSE I KILL THE GAME WHEN SOMETHING HITS BOTTOM
 	this.width = 0; //
 	this.height = 0; //
 	this.gameBound = {left: 0, top: 0, right: 0, bottom: 0};
 	this.intervalId = 0;
-    this.score = 0;
+    this.score = 0; //it will be 1 point per problem
     this.level = 1;
     
 
@@ -468,9 +466,9 @@ GameOverState.prototype.draw = function(game, dt, ctx)
     ctx.textAlign="center"; 
     ctx.fillText("Game Over!", game.width / 2, game.height/2 - 40); 
     ctx.font="16px Arial";
-    ctx.fillText("You scored " + game.score + " and got to level " + game.level, game.width / 2, game.height/2);
+    ctx.fillText("You got " + game.score + " correct answers and got to level " + game.level, game.width / 2, game.height/2);
     ctx.font="16px Arial";
-    ctx.fillText("Press 'Enter' to play again.", game.width / 2, game.height/2 + 40);   
+    ctx.fillText("Press 'Enter' to save your score and restart.", game.width / 2, game.height/2 + 40);   
 };
 
 GameOverState.prototype.keyDown = function(game, keyCode) 
@@ -543,6 +541,7 @@ LevelIntroState.prototype.update = function(game, dt)  //Updates the game state 
     if(this.countdown < 1) //Every time the countdown number gets below 1
     { 
         this.countdownMessage = "1"; // update the countdown message
+
     } 
     if(this.countdown <= 0) //When it gets to zero (or less, but if it's less, we done fucked up somewhere)
     {
@@ -568,19 +567,19 @@ function PlayState(config, level)
     this.enemyAreDropping =  false; //a flag for whether they're dropping
  
     //  Game entities.
-    this.ship = null; //create a LIMIT LINE
+    this.endLine = null; //create a LIMIT LINE
     this.enemy = []; //create a set of the enemy
 }
 
 /*
-  The ship has a position and that's about it. Used for colision detecting. Will trade for the planet later.
+  The endLine has a position and that's about it. Used for colision detecting. Will trade for the planet later.
 */
-function Ship(x, y) //x and y are the position it's going to
+function endLine(x, y) //x and y are the position it's going to
 {
-    this.x = x; //gives the ship the x position that came in the parameters
-    this.y = y; //gives the ship the y position that came in the parameters
-    this.width = 500; //width of the ship (should find a way to scale it with the canvas size)
-    this.height = 10; //height of the ship (should find a way to scale it with the canvas size)
+    this.x = x; //gives the endLine the x position that came in the parameters
+    this.y = y; //gives the endLine the y position that came in the parameters
+    this.width = 500; //width of the endLine (should find a way to scale it with the canvas size)
+    this.height = 10; //height of the endLine (should find a way to scale it with the canvas size)
 }
  
  
@@ -603,13 +602,12 @@ function Invader(x, y, rank, file, type)
 PlayState.prototype.enter = function(game) // Enter State, this is called when we start each level
 {
  
-    // Create the ship at the bottom middle of the game bounds
-    this.ship = new Ship(game.width / 2, game.gameBounds.bottom); 
+    // Create the endLine at the bottom middle of the game bounds
+    this.endLine = new endLine(game.width / 2, game.gameBounds.bottom); 
 
-    // Set the ship speed for this level, as well as invader params.
-    // Makes sure things like the invader speed and bomb speed gets a bit faster each level.
+    // Set the endLine speed for this level, as well as invader params.
+    // Makes sure things like the enemy speed gets a bit faster each level.
 	var levelMultiplier = this.level * this.config.levelDifficultyMultiplier;
-	this.shipSpeed = this.config.shipSpeed; //Ship shoud not move at all, its  a limiter line
 	this.invaderInitialVelocity = this.config.invaderInitialVelocity + (levelMultiplier * this.config.invaderInitialVelocity); //Enemy speed grows every level 
 
 	//  Create the enemy.
@@ -644,14 +642,14 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
     	//This kind of got changed by the 'bang' interaction
     }
  
-    /*  Keep the ship in bounds. ANTI-FUCKY CODE RIGHT HERE BRUH*/
-    if(this.ship.x < game.gameBounds.left) 
+    /*  Keep the endLine in bounds. ANTI-FUCKY CODE RIGHT HERE BRUH*/
+    if(this.endLine.x < game.gameBounds.left) 
     {
-        this.ship.x = game.gameBounds.left;
+        this.endLine.x = game.gameBounds.left;
     }
-    if(this.ship.x > game.gameBounds.right) 
+    if(this.endLine.x > game.gameBounds.right) 
     {
-        this.ship.x = game.gameBounds.right;
+        this.endLine.x = game.gameBounds.right;
     }
 
 
@@ -744,7 +742,7 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
 		        	{
 
 		        	bang = true; //bang is when the answer is correct
-		            game.score += this.config.pointsPerInvader; //adds points when enemy is unalived
+		            game.score += 1; //adds points when enemy is unalived
                     
                     problemGen = new Testy();
 
@@ -789,7 +787,7 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
  
   //------------------------------------------------END------------------------------------------------
 
- //  Check for invader/ship collisions.
+ //  Check for invader/endLine collisions.
     for(var i=0; i<this.enemy.length; i++) 
     {
         var invader = this.enemy[i]; //Test per enemy
@@ -798,12 +796,12 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
         // Might be changeable to just reaching bottom and does damage, test later
         // This is a big but simple if clause.
 
-        if((invader.x + invader.width/2) > (this.ship.x - this.ship.width/2) && 
-            (invader.x - invader.width/2) < (this.ship.x + this.ship.width/2) &&
-            (invader.y + invader.height/2) > (this.ship.y - this.ship.height/2) &&
-            (invader.y - invader.height/2) < (this.ship.y + this.ship.height/2)) 
+        if((invader.x + invader.width/2) > (this.endLine.x - this.endLine.width/2) && 
+            (invader.x - invader.width/2) < (this.endLine.x + this.endLine.width/2) &&
+            (invader.y + invader.height/2) > (this.endLine.y - this.endLine.height/2) &&
+            (invader.y - invader.height/2) < (this.endLine.y + this.endLine.height/2)) 
         {
-            // Loses a life per colision (as in, enemy ship reached bottom)
+            // Loses a life per colision (as in, enemy endLine reached bottom)
             game.lives = 0;
             //game.sounds.playSound('explosion'); //sounds make it fucky
         }
@@ -818,7 +816,6 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
     //  Check for victory
     if(this.enemy.length === 0)  //Is our game infinite? Maybe, if I feel like it.
     {
-        game.score += this.level * 50; // We have to have leaderboards right?
         game.level += 1; // Moves to next level
         game.moveToState(new LevelIntroState(game.level)); //TO THE NEXT ONE, TILL THE END OF TIME...or lifes...
     }
@@ -840,10 +837,10 @@ PlayState.prototype.draw = function(game, dt, ctx)
     //  Clear the background.
     ctx.clearRect(0, 0, game.width, game.height);
     
-    //  Draw ship.
+    //  Draw endLine.
     // Let's change it to an actual image later ok?
     ctx.fillStyle = '#999999';
-    ctx.fillRect(this.ship.x - (this.ship.width / 2), this.ship.y - (this.ship.height / 2), this.ship.width, 0);
+    ctx.fillRect(this.endLine.x - (this.endLine.width / 2), this.endLine.y - (this.endLine.height / 2), this.endLine.width, 0);
  
     //  Draw our pesky little enmies.
     ctx.fillStyle = '#006600';
