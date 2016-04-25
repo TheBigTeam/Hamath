@@ -14,19 +14,19 @@ def compose_message():
 def send_teacher_request_email(username, first_name, last_name, user_email_address):
 	TO = recipients if type(recipients) is list else [recipients]
 	SUBJECT = "Teacher Credentials Requested\n\n"
-	TEXT = "User creditials need to be processed.\n\nUSER INFORMATION\nUSERNAME: %s\nFIRSTNAME: %s\n LASTNAME: %s" % (str(first_name.title()), str(last_name.title()), str(username))
+	TEXT = "User creditials need to be processed.\n\nUSER INFORMATION\nUSERNAME: %s\nFIRSTNAME: %s\n LASTNAME: %s" % (str(username), str(first_name.title()), str(last_name.title()))
 	send_email(TO, SUBJECT, TEXT)
 
 def send_thank_you_email_for_teacher_request(username, first_name, last_name, user_email_address):
 	TO = [user_email_address]
 	SUBJECT = "Welcome to Hamath " + first_name.title() + "!\n\n"
-	TEXT = "Thank you for signing up with Hamath! One of our admins will review your request for Teacher credentials shortly.\n\nUSER INFORMATION\nUSERNAME: %s\nFIRSTNAME: %s\n LASTNAME: %s" % (str(first_name.title()), str(last_name.title()), str(username))
+	TEXT = "Thank you for signing up with Hamath! One of our admins will review your request for Teacher credentials shortly.\n\nUSER INFORMATION\nUSERNAME: %s\nFIRSTNAME: %s\n LASTNAME: %s" % (str(username), str(first_name.title()), str(last_name.title()))
 	send_email(TO, SUBJECT, TEXT)
 
 def send_thank_you_email(username, first_name, last_name, user_email_address):
 	TO = [user_email_address]
 	SUBJECT = "Welcome to Hamath " + first_name.title() + "!\n\n"
-	TEXT = "Thank you for signing up with Hamath! \n\nUSER INFORMATION\nUSERNAME: %s\nFIRSTNAME: %s\n LASTNAME: %s" % (str(first_name.title()), str(last_name.title()), str(username))
+	TEXT = "Thank you for signing up with Hamath! \n\nUSER INFORMATION\nUSERNAME: %s\nFIRSTNAME: %s\n LASTNAME: %s" % (str(username), str(first_name.title()), str(last_name.title()))
 	send_email(TO, SUBJECT, TEXT)
 
 def send_contact_email(user_name, email_address, message_content):
