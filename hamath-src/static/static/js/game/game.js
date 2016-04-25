@@ -196,7 +196,7 @@ function sound(src) {
 function playSong(){
     var mySound; 
 
-    mySound = new sound("http://www.oocities.org/gchafe/redwing.wav");
+    mySound = new sound("http://www.nonstick.com/wsounds/sndfx2.mp3");
     mySound.play();
 }
 
