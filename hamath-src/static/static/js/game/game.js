@@ -1,3 +1,9 @@
+/**
+* Author - Henrique Oliveira
+* Co-author - Dave Kerr
+* https://github.com/dwmkerr/spaceinvaders
+*/
+
 //CHANGE IT LATER
 
 // Main game engine file, will control game state, keys, enemy and player
