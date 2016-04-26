@@ -742,7 +742,7 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
     if(hitBottom)
     {
         this.lives -= 1;
-        playSong();
+        //playSong();
     }
 
 
@@ -827,7 +827,7 @@ PlayState.prototype.enter = function(game) // Enter State, this is called when w
         {
             // Loses a life per colision (as in, enemy endLine reached bottom)
             game.lives = 0;
-            game.sound.playSong('sounds.mp3'); //sounds make it fucky
+            //game.sound.playSong('sounds.mp3'); //sounds make it fucky
         }
     }
 
