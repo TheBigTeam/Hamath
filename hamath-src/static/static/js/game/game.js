@@ -862,8 +862,8 @@ PlayState.prototype.draw = function(game, dt, ctx)
     ctx.clearRect(0, 0, game.width, game.height);
 
     var img = new Image();
-    img.style.height = "25px";
-    img.style.width = "25px";
+    img.height = "25px";
+    img.width = "25px";
 
 
 
