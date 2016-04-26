@@ -34,7 +34,13 @@ background: radial-gradient(circle,#3498db,black);
 }
 
 .contact {
-  color:white;
+  color:black;
+  margin-top: 50;
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  background: white;
+  text-align: center;
 }
 
 #version
