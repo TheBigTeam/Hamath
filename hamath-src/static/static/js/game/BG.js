@@ -1,3 +1,9 @@
+/**
+* Author - Dave Kerr
+* https://github.com/dwmkerr/spaceinvaders
+*/
+
+
 //  Define the starfield "class" (There are no classes in JS, this is a function that gets to act like an object.
 
 

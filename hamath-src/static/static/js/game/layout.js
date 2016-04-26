@@ -1,3 +1,8 @@
+/**
+* Author - Dave Kerr
+* https://github.com/dwmkerr/spaceinvaders
+*/
+
 /* And this is where we'll put our JS. */
 //  Create the starfield.
 var container = document.getElementById('BG');
