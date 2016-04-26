@@ -212,7 +212,7 @@ function Game()
         invaderDropDistance: 10,
         gameWidth: 400,
         gameHeight: 600,
-        fps: 50,
+        fps: 60,
         invaderRanks: 1, //rows
         invaderFiles: 1, //collumns
         endLineSpeed: 0,
