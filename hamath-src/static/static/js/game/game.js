@@ -177,7 +177,7 @@ function SaveScore(gameMode, score)
     });
 };
 
-function sound(src) {
+/*function sound(src) {
     this.sound = document.createElement("audio");
     this.sound.src = src;
     this.sound.setAttribute("preload", "auto");
@@ -199,7 +199,7 @@ function playSong(){
     mySound = new sound("http://www.nonstick.com/wsounds/sndfx2.mp3");
     mySound.play();
 }
-
+*/
 function Game()
 {
     var problemGen = new Testy();
@@ -863,13 +863,40 @@ PlayState.prototype.draw = function(game, dt, ctx)
     ctx.clearRect(0, 0, game.width, game.height);
 
     var img = new Image();
-    img.height = "25px";
-    img.width = "25px";
-
+    var imlocation = "https://github.com/TheBigTeam/hamath-workspace/blob/master/hamath-src/static/static/images/enemies/";
+ var currentdate = 0;
+ var image_number = 0;
+ function ImageArray (n) {
+   this.length = n;
+   for (var i =1; i <= n; i++) {
+     this[i] = ' '
+   }
+ }
+ image = new ImageArray(12)
+ image[1]="1b.png?raw=true"
+ image[2]="1p.png?raw=true"
+ image[3]="1r.png?raw=true"
+ image[4]="1y.png?raw=true"
+ image[5]="2b.png?raw=true"
+ image[6]="2p.png?raw=true"
+ image[7]="2r.png?raw=true"
+ image[8]="2y.png?raw=true"
+ image[9]="3b.png?raw=true"
+ image[10]="3p.png?raw=true"
+ image[11]="3r.png?raw=true"
+ image[12]="3y.png?raw=true"
+ var rand = 60/image.length
+ function randomimage() {
+ 	currentdate = new Date()
+ 	image_number = currentdate.getSeconds()
+ 	image_number = Math.floor(image_number/rand)
+ 	return(image[image_number])
+ }
 
 
  //get the image from this URL
-  img.src = 'https://github.com/TheBigTeam/hamath-workspace/blob/master/hamath-src/static/static/images/enemies/1b.png?raw=true';
+
+  img.src = imlocation + randomimage();
 
     //  Draw endLine.
     // Let's change it to an actual image later ok?
