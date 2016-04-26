@@ -4,11 +4,16 @@
 
 {% block head_title %} Intermediate Mode {% endblock %}
 
-{% block content %} 
+{% block content %}
 
 <link href="{% static 'css/game/core.css' %}" rel="stylesheet"> <!-- Found at https://github.com/dwmkerr/html5base-->
 <link href="{% static 'css/game/typeography.css' %}" rel="stylesheet"> <!-- Styling needed for a fullscreen canvas and no scrollbars.  -->
 <link href="{% static 'css/game/basic.css' %}" rel="stylesheet"> <!-- Here's where we'll put the Game styles -->
+<audio id ="day70" src = "/static/music/day70.mp3" loop ="loop"></audio>
+<script>window.onload = function() {
+	document.getElementById("day70").play();
+	document.getElementById("day70").volume = 0.2;
+}</script>
 
 <div style="position: relative; top: 50px; left: 0px; color: white; font-size: 35px;">
 	<h4 id="mode">Intermediate Mode</h4>
@@ -21,7 +26,7 @@
 	<canvas id="gameCanvas"></canvas>
 	<div class="planet-earth">
 	    <img src= "{% static 'images/planet-earth.png' %}" alt="planet-earth" style="width:626px;height:626px;">
-	</div> 
+	</div>
 
 	<div class="solution">
 		<input type="text" name="solutionInput" id="solutionInput"><br>
