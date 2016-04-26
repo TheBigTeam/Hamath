@@ -32,7 +32,7 @@ def send_thank_you_email(username, first_name, last_name, user_email_address):
 def send_contact_email(user_name, email_address, message_content):
 	TO = recipients
 	SUBJECT = "New Message!\n\n"
-	TEXT = message_content
+	TEXT = email_address + "\n" + message_content 
 	send_email(TO, SUBJECT, TEXT)
 
 def send_email(TO, SUBJECT, TEXT):
