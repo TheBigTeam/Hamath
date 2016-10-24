@@ -147,9 +147,9 @@ def Contact(request):
             contact_email = request.POST.get('contact_email', '')
             message_content = request.POST.get('message_content', '')
 
-            print contact_name
-            print contact_email
-            print message_content
+            print(contact_name)
+            print(contact_email)
+            print(message_content)
 
             emailer.send_contact_email(
                 contact_name,
